@@ -154,7 +154,6 @@ export default {
       this.tableData = [];
       this.reload = false;
       const result = await this.searchApi(params);
-      console.log(result);
       this.tableData = result || [];
       this.count = await this.Count(params);
       this.emptyText = "暂无数据";

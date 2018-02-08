@@ -36,7 +36,7 @@
           </el-col>
           <el-col :span="12" style="text-align:right;">
             <el-dropdown @command="command" >
-              <i class="el-icon-bell" style="margin-right: 15px">王小虎</i>
+              <i class="el-icon-bell" style="margin-right: 15px">{{name}}</i>
               <el-dropdown-menu slot="dropdown">
                 <el-dropdown-item command="view">查看</el-dropdown-item>
                 <el-dropdown-item command="insert">新增</el-dropdown-item>
@@ -91,6 +91,14 @@ export default {
           path: "/login"
         });
       }
+    }
+  },
+  computed: {
+    name() {
+      const current = Mmbs.User.current();
+      console.log(current);
+      if (!current) this.$router.push({ path: "/login" });
+      return current.attributes.username;
     }
   }
 };

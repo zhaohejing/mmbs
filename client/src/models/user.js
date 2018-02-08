@@ -2,8 +2,18 @@ import Mmbs from 'mmbs'
 const model = {
   // 查询对象
   Query: new Mmbs.Query(Mmbs.User),
+  insert: model => {
+    const user = new Mmbs.User();
+    const acl = new Mmbs.ACL();
+    acl.setRoleWriteAccess("管理员", true)
+    user.setACL(acl);
+    return user.save(model)
+  },
   signUp: model => {
     const user = new Mmbs.User();
+    const acl = new Mmbs.ACL();
+    acl.setRoleWriteAccess("管理员", true)
+    user.setACL(acl);
     return user.signUp(model)
   },
   // 更新

@@ -16,7 +16,7 @@
         </el-table-column>
         <el-table-column property="" label="操作">
           <template slot-scope="scope">
-            <el-button type="default" class="add" icon="plus" @click="onEdit(scope.row.id)">编辑</el-button>
+            <el-button  type="default" class="add" icon="plus" @click="onEdit(scope.row.id)">编辑</el-button>
             <el-button type="default" class="delete" icon="delete" @click="onDelete(scope.row)">删除</el-button>
           </template>
         </el-table-column>
