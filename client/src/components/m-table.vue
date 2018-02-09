@@ -147,17 +147,18 @@ export default {
     },
     /* 获取数据 */
     async getApiData() {
-      const params = this.params;
-      params.skipCount = (this.currentPage - 1) * this.limit;
-      params.maxResultCount = this.limit;
-      this.emptyText = "加载中。。。";
-      this.tableData = [];
-      this.reload = false;
-      const result = await this.searchApi(params);
-      this.tableData = result || [];
-      this.count = await this.Count(params);
-      this.emptyText = "暂无数据";
-      this.reload = true;
+      const _self = this;
+      const params = _self.params;
+      params.skipCount = (_self.currentPage - 1) * this.limit;
+      params.maxResultCount = _self.limit;
+      _self.emptyText = "加载中。。。";
+      _self.tableData = [];
+      _self.reload = false;
+      const result = await _self.searchApi(params);
+      _self.tableData = result || [];
+      _self.count = await _self.Count(params);
+      _self.emptyText = "暂无数据";
+      _self.reload = true;
     },
     /* 参数搜索全部数据 */
     async searchApiData() {

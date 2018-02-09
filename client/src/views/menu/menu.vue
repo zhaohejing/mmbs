@@ -1,25 +1,32 @@
 <template>
   <div>
-    <m-table :search-api="api">
+    <m-table ref="table" :count="count" :search-api="api">
       <!--操作按鈕-->
       <template slot="buttons">
-        <el-button type="default" class="add" icon="plus" >添加</el-button>
-        <el-button type="default" class="delete" icon="delete" >批量删除</el-button>
+        <el-button type="default" class="add" icon="plus" @click="onCreate">添加</el-button>
+        <el-button type="default" class="delete" icon="delete">批量删除</el-button>
       </template>
       <template slot="columns">
-        <el-table-column type="index" label="编号" width="100"></el-table-column>
-        <el-table-column property="enterpriseName" label="菜单名"></el-table-column>
-        <el-table-column property="enterpriseAddress" label="图标"></el-table-column>
-        <el-table-column property="enterpriseType" label="路径"></el-table-column>
-        <el-table-column property="enterprisePerson" label="状态"></el-table-column>
-        <el-table-column property="contactNumber" label="父菜单"></el-table-column>
-        <el-table-column property="corridorEntryMode" label="操作"></el-table-column>
+        <el-table-column property="id" label="唯一编号"></el-table-column>
+        <el-table-column property="attributes.name" label="名称"></el-table-column>
+        <el-table-column property="attributes.createdAt" label="创建时间">
+          <template slot-scope="scope">
+            <span>{{ scope.row.attributes.createdAt}}</span>
+          </template>
+        </el-table-column>
+        <el-table-column property="" label="操作">
+          <template slot-scope="scope">
+            <el-button  type="default" class="add" icon="plus" @click="onEdit(scope.row.id)">编辑</el-button>
+            <el-button type="default" class="delete" icon="delete" @click="onDelete(scope.row)">删除</el-button>
+          </template>
+        </el-table-column>
       </template>
     </m-table>
   </div>
 </template>
 <script>
 import Menu from "@/models/menu";
+const repository = new Menu();
 export default {
   name: "menudash",
   data() {
@@ -28,9 +35,36 @@ export default {
       params: {}
     };
   },
-  created() {},
+  created() {
+    console.log(repository);
+  },
   methods: {
-    api: Menu.find
+    api: repository.find.bind(repository),
+    count: repository.count.bind(repository),
+    onDelete(x) {
+      const table = this.$refs.table;
+      console.log(x);
+      repository.delete(x).then(r => {
+        if (r) {
+          table.initData();
+        }
+      });
+    },
+    onCreate() {
+      const table = this.$refs.table;
+      repository
+        .insert({
+          name: "admin" + Math.ceil(Math.random() * 1000),
+          read: true,
+          write: true
+        })
+        .then(r => {
+          console.log(r);
+          if (r) {
+            table.initData();
+          }
+        });
+    }
   }
 };
 </script>

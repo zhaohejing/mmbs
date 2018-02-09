@@ -4,7 +4,6 @@ const model = {
   Query: new Mmbs.Query(Mmbs.Role),
   // 插入
   insert: model => {
-    debugger
     const acl = new Mmbs.ACL();
     if (model.read) {
       acl.setPublicReadAccess(true);

@@ -40,11 +40,15 @@ export default {
     count: User.count,
     onDelete(x) {
       const table = this.$refs.table;
-      User.delete(x).then(r => {
-        if (r) {
-          table.initData();
-        }
-      });
+      User.delete(x)
+        .then(r => {
+          if (r) {
+            table.initData();
+          }
+        })
+        .catch(e => {
+          this.$message(e.message);
+        });
     },
     onCreate() {
       const table = this.$refs.table;
