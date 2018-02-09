@@ -6,62 +6,66 @@ import Mmbs from 'mmbs'
  * @params count 是否基数
  */
 function ChangeFilter(query, filter, count = false) {
-  for (const param in filter.params) {
-    // 等值查询
-    if (param.b === "=") {
-      query.equalTo(param.a, param.c);
-    }
-    // 不等值查询
-    if (param.b === "<>") {
-      query.notEqualTo(param.a, param.c);
-    }
-    // 小于
-    if (param.b === "<") {
-      query.lessThan(param.a, param.c);
-    }
-    // 小于等于
-    if (param.b === "<=") {
-      query.lessThanOrEqualTo(param.a, param.c);
-    }
-    // 大于
-    if (param.b === ">") {
-      query.greaterThan(param.a, param.c);
-    }
-    // 大于等于
-    if (param.b === ">=") {
-      query.greaterThanOrEqualTo(param.a, param.c);
-    }
-    // 正序
-    if (param.b === "+") {
-      query.ascending(param.a);
-    }
-    // 倒序
-    if (param.b === "-") {
-      query.descending(param.a);
-    }
-    // 相似查询
-    if (param.b === "%") {
-      query.startsWith(param.a, param.c);
-    }
-    // 反 相似查询
-    if (param.b === "!%") {
-      query.notstartsWith(param.a, param.c);
-    }
-    // 获取字段
-    if (param.b === "*") {
-      query.select(...param.c);
-    }
+  if (filter.params) {
+    filter.params.forEach(v => {
+      // 等值查询
+      if (v.b === "=" && v.c !== undefined && v.c !== "") {
+        query.equalTo(v.a, v.c);
+      }
+      // 不等值查询
+      if (v.b === "<>" && v.c !== undefined) {
+        query.notEqualTo(v.a, v.c);
+      }
+      // 小于
+      if (v.b === "<" && v.c !== undefined) {
+        query.lessThan(v.a, v.c);
+      }
+      // 小于等于
+      if (v.b === "<=" && v.c !== undefined) {
+        query.lessThanOrEqualTo(v.a, v.c);
+      }
+      // 大于
+      if (v.b === ">" && v.c !== undefined) {
+        query.greaterThan(v.a, v.c);
+      }
+      // 大于等于
+      if (v.b === ">=" && v.c !== undefined) {
+        query.greaterThanOrEqualTo(v.a, v.c);
+      }
+      // 正序
+      if (v.b === "+") {
+        query.ascending(v.a);
+      }
+      // 倒序
+      if (v.b === "-") {
+        query.descending(v.a);
+      }
+      // 相似查询
+      if (v.b === "%" && v.c !== undefined) {
+        query.startsWith(v.a, v.c);
+      }
+      // 反 相似查询
+      if (v.b === "!%" && v.c !== undefined) {
+        query.notstartsWith(v.a, v.c);
+      }
+      // 获取字段
+      if (v.b === "*" && v.c !== undefined) {
+        query.select(...v.c);
+      }
+    })
   }
+
+
   if (count) {
     return query;
   }
-  if (filter.skip && filter.skip >= 0) {
-    query.skip(filter.skip);
+  if (filter.skipCount && filter.skipCount >= 0) {
+    query.skip(filter.skipCount);
   } else {
     query.skip(0);
   }
-  if (filter.limit && filter.limit >= 0) {
-    query.limit(filter.limit);
+  if (filter.maxResultCount && filter.maxResultCount >= 0) {
+    query.limit(filter.maxResultCount);
   } else {
     query.limit(10);
   }
@@ -72,10 +76,8 @@ const BaseModel = class {
     this.table = props.table
     this.ctor = props.ctor || null
     this.Context = Mmbs.Object.extend(this.table, this.ctor)
-    this.Query = new Mmbs.Query(this.Context)
   }
   insert(model) {
-    debugger
     const temp = new this.Context();
     return temp.save(model)
   }
@@ -88,22 +90,22 @@ const BaseModel = class {
     return mo.save();
   }
   delete(mo) {
-    return mo.destory()
+    return mo.destroy()
   }
   count(params) {
-    return ChangeFilter(this.Query, params, true).count();
+    return ChangeFilter(new Mmbs.Query(this.Context), params, true).count();
   }
   // 查询
   find(params) {
-    return ChangeFilter(this.Query, params).find();
+    return ChangeFilter(new Mmbs.Query(this.Context), params).find();
   }
   // 首个
   first() {
-    return this.Query.first()
+    return new Mmbs.Query(this.Context).first()
   }
   // 单个
   findOne(key) {
-    return this.Query.get(key)
+    return new Mmbs.Query(this.Context).get(key)
   }
 }
 export default BaseModel

@@ -24,6 +24,11 @@ export default new Router({
         path: "/menu",
         name: "menudash",
         component: r => require.ensure([], () => r(require('@/views/menu/menu')), 'menu')
+      },
+      {
+        path: "/cate",
+        name: "cate",
+        component: r => require.ensure([], () => r(require('@/views/cate/cate')), 'cate')
       }
     ]
   }, {
