@@ -81,6 +81,9 @@ const BaseModel = class {
     const temp = new this.Context();
     return temp.save(model)
   }
+  getself(key) {
+    return Mmbs.Object.createWithoutData(this.table, key)
+  }
   modify(mo, change) {
     for (const x in change) {
       const temp = mo.get(x);

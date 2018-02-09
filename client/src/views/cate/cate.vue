@@ -50,18 +50,27 @@ export default {
       });
     },
     onCreate() {
-      const parent = repository.first();
-      const table = this.$refs.table;
+      debugger;
+      let temp = null;
       repository
-        .insert({
-          name: "cate" + Math.ceil(Math.random() * 1000),
-          parent
-        })
+        .first()
         .then(r => {
-          console.log(r);
-          if (r) {
-            table.initData();
-          }
+          temp = r;
+        })
+        .then(() => {
+          const a = temp ? repository.getself(temp.id) : null;
+          const table = this.$refs.table;
+          repository
+            .insert({
+              name: "cate" + Math.ceil(Math.random() * 1000),
+              parent: a
+            })
+            .then(r => {
+              console.log(r);
+              if (r) {
+                table.initData();
+              }
+            });
         });
     }
   }
