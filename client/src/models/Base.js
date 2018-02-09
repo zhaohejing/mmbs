@@ -82,7 +82,10 @@ const BaseModel = class {
     return temp.save(model)
   }
   getself(key) {
-    return Mmbs.Object.createWithoutData(this.table, key)
+    if (!key || key === "") return null;
+    const temp = new this.Context();
+    temp.id = key;
+    return temp
   }
   modify(mo, change) {
     for (const x in change) {

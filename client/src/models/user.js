@@ -6,6 +6,7 @@ const model = {
     const user = new Mmbs.User();
     const acl = new Mmbs.ACL();
     acl.setRoleWriteAccess("管理员", true)
+    acl.setPublicReadAccess(true)
     user.setACL(acl);
     return user.save(model)
   },
@@ -13,6 +14,7 @@ const model = {
     const user = new Mmbs.User();
     const acl = new Mmbs.ACL();
     acl.setRoleWriteAccess("管理员", true)
+    acl.setPublicReadAccess(true)
     user.setACL(acl);
     return user.signUp(model)
   },

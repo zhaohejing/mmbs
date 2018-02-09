@@ -52,7 +52,7 @@ export default {
     },
     onCreate() {
       const table = this.$refs.table;
-      User.signUp({
+      User.insert({
         username: "user_" + Math.ceil(Math.random() * 1000),
         password: "123456",
         email: "user_" + Math.ceil(Math.random() * 1000) + "@qq.com"

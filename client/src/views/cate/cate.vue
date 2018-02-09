@@ -16,6 +16,7 @@
         </el-table-column>
         <el-table-column property="" label="操作">
           <template slot-scope="scope">
+            <el-button  type="default" class="add" icon="plus" @click="onCreate(scope.row.id)">添加下级</el-button>
             <el-button  type="default" class="add" icon="plus" @click="onEdit(scope.row.id)">编辑</el-button>
             <el-button type="default" class="delete" icon="delete" @click="onDelete(scope.row)">删除</el-button>
           </template>
@@ -49,28 +50,19 @@ export default {
         }
       });
     },
-    onCreate() {
-      debugger;
-      let temp = null;
+    onCreate(id) {
+      const parent = repository.getself(id);
+      const table = this.$refs.table;
       repository
-        .first()
-        .then(r => {
-          temp = r;
+        .insert({
+          name: "cate" + Math.ceil(Math.random() * 1000),
+          parent
         })
-        .then(() => {
-          const a = temp ? repository.getself(temp.id) : null;
-          const table = this.$refs.table;
-          repository
-            .insert({
-              name: "cate" + Math.ceil(Math.random() * 1000),
-              parent: a
-            })
-            .then(r => {
-              console.log(r);
-              if (r) {
-                table.initData();
-              }
-            });
+        .then(r => {
+          console.log(r);
+          if (r) {
+            table.initData();
+          }
         });
     }
   }
