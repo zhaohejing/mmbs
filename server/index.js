@@ -4,18 +4,23 @@ const cors = require('cors');
 const MmbsServer = require('./lib/mmbs-server').MmbsServer;
 const MmbsDashboard = require('./dashboard/app');
 const config = require('./config/config');
+const Builder = require('./cloud/migrations/index');
 var path = require('path');
 
 
 var dashboard = new MmbsDashboard(config.dashboard, {
   allowInsecureHTTP: true
 });
+debugger;
 var api = new MmbsServer(config.mmbsServer);
 
 var app = express();
 
 if (config.useMorgan) {
   app.use(morgan(config.useMorgan)); // enable the log when the client requesting something to web. combined short dev common
+}
+if (config.init) {
+  Builder.Creator();
 }
 app.use(cors()); // allow client to access the server
 // Serve static assets from the /public folder

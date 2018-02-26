@@ -1,11 +1,7 @@
-const menuBuilder = require('./menu');
-const roleBuilder = require('./role');
-const userBuilder = require('./user');
+const cateBuilder = require('./cate');
 const Builder = {
     Creator: function () {
-        menuBuilder.initAdminMenu();
-        roleBuilder.initRole();
-        userBuilder.initUser();
+        cateBuilder.init();
     }
 }
-module.exports = Builder;
+module.exports = Builder
