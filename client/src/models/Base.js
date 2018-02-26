@@ -3,7 +3,7 @@ import Mmbs from 'mmbs'
 /*
  * @params query 查询对象
  * @params filter 过滤条件
- * @params count 是否基数
+ * @params count 是否求个数
  */
 function ChangeFilter(query, filter, count = false) {
   if (filter.params) {
@@ -71,6 +71,8 @@ function ChangeFilter(query, filter, count = false) {
   }
   return query;
 }
+
+
 const BaseModel = class {
   constructor(props) {
     this.table = props.table
@@ -81,19 +83,20 @@ const BaseModel = class {
     const temp = new this.Context();
     return temp.save(model)
   }
-  getself(key) {
+
+  applyself(key) {
     if (!key || key === "") return null;
     const temp = new this.Context();
     temp.id = key;
     return temp
   }
-  modify(mo, change) {
-    for (const x in change) {
-      const temp = mo.get(x);
+  modify(old, current) {
+    for (const x in current) {
+      const temp = old.get(x);
       if (temp == null || !temp || temp === undefined) continue;
-      mo.set(x, change[x])
+      old.set(x, current[x])
     }
-    return mo.save();
+    return old.save();
   }
   delete(mo) {
     return mo.destroy()

@@ -4,11 +4,11 @@
       <el-menu :router="true" default-active="3-1-2" class="el-menu-vertical"  :collapse="extend">
         <el-menu-item index="page1">
           <i class="el-icon-menu"></i>
-          <span slot="title">业务导航1</span>
+          <span slot="title">A</span>
         </el-menu-item>
         <el-menu-item index="page2">
           <i class="el-icon-setting"></i>
-          <span slot="title">业务导航12</span>
+          <span slot="title">B</span>
         </el-menu-item>
         <el-submenu index="3">
           <template slot="title">

@@ -51,7 +51,7 @@ export default {
       });
     },
     onCreate(id) {
-      const parent = repository.getself(id);
+      const parent = repository.applyself(id);
       const table = this.$refs.table;
       repository
         .insert({
