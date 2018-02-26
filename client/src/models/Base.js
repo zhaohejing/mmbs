@@ -79,28 +79,50 @@ const BaseModel = class {
     this.ctor = props.ctor || null
     this.Context = Mmbs.Object.extend(this.table, this.ctor)
   }
-  insert(model) {
+  // 插入
+  insert(model, role = null) {
     const temp = new this.Context();
+    const acl = new Mmbs.ACL();
+    if (role) {
+      acl.setRoleWriteAccess(role, true)
+      acl.setRoleReadAccess(role, true)
+    } else {
+      acl.setPublicReadAccess(true)
+      acl.setPublicWriteAccess(true)
+    }
+    temp.setACL(acl)
     return temp.save(model)
   }
-
+  // 获取空对象
   applyself(key) {
     if (!key || key === "") return null;
     const temp = new this.Context();
     temp.id = key;
     return temp
   }
-  modify(old, current) {
+  // 编辑
+  modify(old, current, role = null) {
     for (const x in current) {
       const temp = old.get(x);
       if (temp == null || !temp || temp === undefined) continue;
       old.set(x, current[x])
     }
+    const acl = new Mmbs.ACL();
+    if (role) {
+      acl.setRoleWriteAccess(role, true)
+      acl.setRoleReadAccess(role, true)
+    } else {
+      acl.setPublicReadAccess(true)
+      acl.setRoleReadAccess(true)
+    }
+    temp.setACL(acl)
     return old.save();
   }
+  // 删除
   delete(mo) {
     return mo.destroy()
   }
+  // 计数
   count(params) {
     return ChangeFilter(new Mmbs.Query(this.Context), params, true).count();
   }

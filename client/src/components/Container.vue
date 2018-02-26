@@ -76,9 +76,18 @@ import Mmbs from "mmbs";
 export default {
   data() {
     return {
-      a: "",
+      name: "",
       extend: false
     };
+  },
+  created() {
+    const current = Mmbs.User.current();
+    if (!current) {
+      this.$router.push({ path: "/login" });
+    } else {
+      console.log(current);
+      this.name = current.attributes.username;
+    }
   },
   methods: {
     change() {
@@ -87,18 +96,8 @@ export default {
     command(mond) {
       if (mond === "signout") {
         Mmbs.User.logOut();
-        this.$router.push({
-          path: "/login"
-        });
+        this.$router.push({ path: "/login" });
       }
-    }
-  },
-  computed: {
-    name() {
-      const current = Mmbs.User.current();
-      console.log(current);
-      if (!current) this.$router.push({ path: "/login" });
-      return current.attributes.username;
     }
   }
 };

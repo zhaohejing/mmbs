@@ -7,7 +7,6 @@ const config = require('./config/config');
 const Builder = require('./cloud/migrations/index');
 var path = require('path');
 
-
 var dashboard = new MmbsDashboard(config.dashboard, {
   allowInsecureHTTP: true
 });
