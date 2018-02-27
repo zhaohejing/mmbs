@@ -91,6 +91,10 @@ const Role = class {
     temp.setACL(acl)
     return temp.save(model)
   }
+  async saveRole(model) {
+    const res = await Mmbs.Cloud.run("saveRole", model)
+    return res
+  }
   // 获取空对象
   applyself(key) {
     if (!key || key === "") return null;

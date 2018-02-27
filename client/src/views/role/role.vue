@@ -54,10 +54,9 @@ export default {
     onCreate() {
       const table = this.$refs.table;
       _roleRepository
-        .insert({
+        .saveRole({
           name: "admin" + Math.ceil(Math.random() * 1000),
-          read: true,
-          write: true
+          menus: ["nxwZ2lzvNM", "gOhE7A14Ay", "DXTGXGiei9"]
         })
         .then(r => {
           console.log(r);

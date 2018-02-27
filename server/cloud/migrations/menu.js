@@ -3,7 +3,9 @@ let SYS_MENU_CLASS_NAME = 'sys_menu'
 
 async function init() {
     let query = new Mmbs.Query(Mmbs.Object.extend(SYS_MENU_CLASS_NAME))
-    let res = await query.count();
+    let res = await query.count({
+        useMasterKey: true
+    });
     if (res > 0) return
     let menus = [{
             name: "box",
@@ -106,6 +108,11 @@ async function init() {
         try {
             let Menu = Mmbs.Object.extend(SYS_MENU_CLASS_NAME)
             let m = new Menu()
+
+            let acl = new Mmbs.ACL();
+            acl.setPublicReadAccess(false);
+            acl.setPublicWriteAccess(false);
+
             m.set("name", item.name);
             m.set("displayName", item.displayName);
             m.set("metaData", item.metaData);
@@ -113,6 +120,8 @@ async function init() {
             m.set("url", item.url);
             m.set("icon", item.icon);
             m.set("parent", parent)
+            m.setACL(acl)
+
             let result = await m.save(null);
             let id = result && result.id;
             if (id && item.children && item.children.length) {

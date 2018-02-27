@@ -2,8 +2,6 @@ const utils = require('../utils/index');
 
 Mmbs.Cloud.beforeSave(Mmbs.Role, async function (request, response) {
     try {
-        debugger
-        console.log(1)
         let role = request.object;
         let newRoleName = role.get('name')
         let newPerm = role.get('permissions')

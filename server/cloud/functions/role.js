@@ -1,9 +1,9 @@
 const utils = require('./../utils/index');
+let SYS_MENU_CLASS_NAME = 'sys_menu'
 //保存角色
 Mmbs.Cloud.define("saveRole", async function (req, res) {
     try {
         let user = req.user;
-        console.warn(user)
         let ret = await utils.isAdminRole(user);
         if (ret.status != 0) {
             res.error(ret.err)
@@ -17,6 +17,29 @@ Mmbs.Cloud.define("saveRole", async function (req, res) {
         ret = await role.save(obj, {
             useMasterKey: true
         })
+        if (obj.menus != null && obj.menus.length > 0) {
+            let query = new Mmbs.Query(Mmbs.Object.extend(SYS_MENU_CLASS_NAME))
+            // query.containedIn("objectId", obj.menus)
+            let res = await query.find({
+                useMasterKey: true
+            });
+            if (res && res.length > 0) {
+                res.map(r => {
+                    var acl = r.getACL();
+                    delete acl.permissionsById["role:" + obj.name]
+                    if (obj.menus.includes(r.id)) {
+                        acl.permissionsById["role:" + obj.name] = {
+                            read: true
+                        };
+                    }
+                    r.setACL(acl);
+                    r.save(null, {
+                        useMasterKey: true
+                    })
+                })
+
+            }
+        }
         res.success(ret)
     } catch (err) {
         res.error(err)
