@@ -98,8 +98,9 @@ const Role = class {
     temp.id = key;
     return temp
   }
-  getUserRoles() {
-    return Mmbs.Cloud.run("getUserRoles")
+  async getUserRoles() {
+    const res = await Mmbs.Cloud.run("getUserRoles")
+    return res
   }
 
   // 编辑

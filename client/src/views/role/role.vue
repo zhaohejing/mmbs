@@ -35,7 +35,11 @@ export default {
       params: {}
     };
   },
-  created() {},
+  created() {
+    _roleRepository.getUserRoles().then(r => {
+      console.log(r);
+    });
+  },
   methods: {
     api: _roleRepository.find.bind(_roleRepository),
     onDelete(x) {

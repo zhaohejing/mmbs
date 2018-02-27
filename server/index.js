@@ -16,7 +16,7 @@ var path = require('path');
 var dashboard = new MmbsDashboard(config.dashboard, {
   allowInsecureHTTP: true
 });
-debugger;
+
 var api = new MmbsServer(config.mmbsServer);
 
 var app = express();

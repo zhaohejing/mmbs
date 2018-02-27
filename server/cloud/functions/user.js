@@ -66,8 +66,8 @@ Mmbs.Cloud.define("deleteUser", async function (req, res) {
 //得到用户所有的角色
 Mmbs.Cloud.define("getUserRoles", async function (req, res) {
     try {
-        let obj = req.params;
-        let user = Mmbs.User.createWithoutData(obj.id)
+        let current = req.user;
+        let user = Mmbs.User.createWithoutData(current.id)
         let result = await utils.getUserRoles(user)
         res.success(result)
     } catch (err) {
