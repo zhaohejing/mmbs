@@ -22,8 +22,6 @@ Mmbs.Cloud.define("saveRole", async function (req, res) {
         res.error(err)
     }
 })
-
-
 //更新角色
 Mmbs.Cloud.define("updateRole", async function (req, res) {
     try {

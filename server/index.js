@@ -7,6 +7,12 @@ const config = require('./config/config');
 const Builder = require('./cloud/migrations/index');
 var path = require('path');
 
+// require('babel-core/register');
+// require('./app.js');
+// require("babel-core").transform("code", {
+//   plugins: ["transform-runtime"]
+// });
+
 var dashboard = new MmbsDashboard(config.dashboard, {
   allowInsecureHTTP: true
 });

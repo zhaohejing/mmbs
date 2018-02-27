@@ -37,13 +37,13 @@ config.dashboard = {
         "serverURL": config.mmbsServer.serverURL,
         "appId": config.mmbsServer.appId,
         "masterKey": config.mmbsServer.masterKey,
-        "appName": "test"
+        "appName": "actions"
     }],
     "trustProxy": 1,
     //此用户是dashboard的登录用户，和上面的用户不一样
     "users": [{
         "user": "admin",
-        "pass": "$2y$10$Mpp7tAPdJbd8lKvQhUZ4IedVLt9u7SJuklzs6AbWCj8CmcQhlfmJ." //yt123456 https://bcrypt-generator.com
+        "pass": "$2y$10$O2d3j.RPukU9rNtf/W41o.tSkikOblEX.c9YkcjlqHwQ8eYsRuLO6" //yt123456 https://bcrypt-generator.com
     }],
     "useEncryptedPasswords": true
 }

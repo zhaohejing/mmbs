@@ -40,6 +40,10 @@ export default {
     };
   },
   created() {
+    roleRepository.getUserRoles().then(r => {
+      console.log(r);
+    });
+
     roleRepository.find({}).then(r => {
       this.roles = r;
       console.log(r);

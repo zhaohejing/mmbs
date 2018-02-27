@@ -98,6 +98,10 @@ const Role = class {
     temp.id = key;
     return temp
   }
+  getUserRoles() {
+    return Mmbs.Cloud.run("getUserRoles")
+  }
+
   // 编辑
   modify(old, current, role = null) {
     for (const x in current) {
