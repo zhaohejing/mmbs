@@ -1,6 +1,6 @@
 <template>
   <div>
-    <m-table ref="table" :count="count" :search-api="api">
+    <m-table ref="table"  :search-api="api">
       <!--操作按鈕-->
       <template slot="buttons">
         <el-button type="default" class="add" icon="plus" @click="onCreate">添加</el-button>
@@ -26,6 +26,7 @@
 </template>
 <script>
 import Role from "@/models/role";
+const _roleRepository = new Role();
 export default {
   name: "menudash",
   data() {
@@ -36,12 +37,11 @@ export default {
   },
   created() {},
   methods: {
-    api: Role.find,
-    count: Role.count,
+    api: _roleRepository.find.bind(_roleRepository),
     onDelete(x) {
       const table = this.$refs.table;
       console.log(x);
-      Role.delete(x).then(r => {
+      _roleRepository.delete(x).then(r => {
         if (r) {
           table.initData();
         }
@@ -49,16 +49,18 @@ export default {
     },
     onCreate() {
       const table = this.$refs.table;
-      Role.insert({
-        name: "admin" + Math.ceil(Math.random() * 1000),
-        read: true,
-        write: true
-      }).then(r => {
-        console.log(r);
-        if (r) {
-          table.initData();
-        }
-      });
+      _roleRepository
+        .insert({
+          name: "admin" + Math.ceil(Math.random() * 1000),
+          read: true,
+          write: true
+        })
+        .then(r => {
+          console.log(r);
+          if (r) {
+            table.initData();
+          }
+        });
     }
   }
 };

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <m-table ref="table"  :count="count" :search-api="api">
+    <m-table ref="table"   :search-api="api">
       <!--操作按鈕-->
       <template slot="buttons">
         <el-button type="default" class="add" icon="plus" @click="onCreate">添加</el-button>
@@ -40,7 +40,6 @@ export default {
   },
   methods: {
     api: repository.find.bind(repository),
-    count: repository.count.bind(repository),
     onDelete(x) {
       const table = this.$refs.table;
       console.log(x);

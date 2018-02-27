@@ -68,11 +68,6 @@ export default {
       type: Function,
       required: true
     },
-    /* 查询Api,方法 */
-    Count: {
-      type: Function,
-      required: true
-    },
     /* 查询参数 */
     params: {
       type: Object,
@@ -157,8 +152,8 @@ export default {
       this.tableData = [];
       this.reload = false;
       const result = await this.searchApi(params);
-      this.tableData = result || [];
-      this.count = await this.Count(params);
+      this.tableData = result.rows || [];
+      this.count = result.total || 0;
       this.emptyText = "暂无数据";
       this.reload = true;
     },

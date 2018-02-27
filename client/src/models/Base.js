@@ -5,7 +5,7 @@ import Mmbs from 'mmbs'
  * @params filter 过滤条件
  * @params count 是否求个数
  */
-function ChangeFilter(query, filter, count = false) {
+async function ChangeFilter(query, filter) {
   if (filter.params) {
     filter.params.forEach(v => {
       // 等值查询
@@ -54,11 +54,7 @@ function ChangeFilter(query, filter, count = false) {
       }
     })
   }
-
-
-  if (count) {
-    return query;
-  }
+  const count = await query.count();
   if (filter.skipCount && filter.skipCount >= 0) {
     query.skip(filter.skipCount);
   } else {
@@ -69,7 +65,11 @@ function ChangeFilter(query, filter, count = false) {
   } else {
     query.limit(10);
   }
-  return query;
+  const list = await query.find();
+  return {
+    total: count,
+    rows: list
+  }
 }
 
 
@@ -122,13 +122,9 @@ const BaseModel = class {
   delete(mo) {
     return mo.destroy()
   }
-  // 计数
-  count(params) {
-    return ChangeFilter(new Mmbs.Query(this.Context), params, true).count();
-  }
   // 查询
   find(params) {
-    return ChangeFilter(new Mmbs.Query(this.Context), params).find();
+    return ChangeFilter(new Mmbs.Query(this.Context), params);
   }
   // 首个
   first() {

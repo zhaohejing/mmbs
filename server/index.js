@@ -24,6 +24,7 @@ var app = express();
 if (config.useMorgan) {
   app.use(morgan(config.useMorgan)); // enable the log when the client requesting something to web. combined short dev common
 }
+//初始化数据
 if (config.init) {
   Builder.Creator();
 }

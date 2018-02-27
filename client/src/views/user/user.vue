@@ -1,6 +1,6 @@
 <template>
   <div>
-    <m-table ref="table" :count="count" :search-api="api">
+    <m-table ref="table"  :search-api="api">
       <!--操作按鈕-->
       <template slot="buttons">
         <el-button type="default" class="add" icon="plus" @click="onCreate">添加</el-button>
@@ -27,6 +27,7 @@
 </template>
 <script>
 import User from "@/models/user";
+const _userRepository = new User();
 export default {
   name: "user",
   data() {
@@ -36,11 +37,11 @@ export default {
   },
   created() {},
   methods: {
-    api: User.find,
-    count: User.count,
+    api: _userRepository.find.bind(_userRepository),
     onDelete(x) {
       const table = this.$refs.table;
-      User.delete(x)
+      _userRepository
+        .delete(x)
         .then(r => {
           if (r) {
             table.initData();
@@ -52,16 +53,18 @@ export default {
     },
     onCreate() {
       const table = this.$refs.table;
-      User.insert({
-        username: "user_" + Math.ceil(Math.random() * 1000),
-        password: "123456",
-        email: "user_" + Math.ceil(Math.random() * 1000) + "@qq.com"
-      }).then(r => {
-        console.log(r);
-        if (r) {
-          table.initData();
-        }
-      });
+      _userRepository
+        .insert({
+          username: "user_" + Math.ceil(Math.random() * 1000),
+          password: "123456",
+          email: "user_" + Math.ceil(Math.random() * 1000) + "@qq.com"
+        })
+        .then(r => {
+          console.log(r);
+          if (r) {
+            table.initData();
+          }
+        });
     }
   }
 };

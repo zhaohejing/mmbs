@@ -1,6 +1,6 @@
 <template>
   <div>
-    <m-table ref="table" :count="count" :search-api="api">
+    <m-table ref="table"  :search-api="api">
       <!--操作按鈕-->
       <template slot="buttons">
         <el-button type="default" class="add" icon="plus" @click="onCreate(null)">添加</el-button>
@@ -40,10 +40,6 @@ export default {
     };
   },
   created() {
-    roleRepository.getUserRoles().then(r => {
-      console.log(r);
-    });
-
     roleRepository.find({}).then(r => {
       this.roles = r;
       console.log(r);
@@ -51,7 +47,6 @@ export default {
   },
   methods: {
     api: menuRepository.find.bind(menuRepository),
-    count: menuRepository.count.bind(menuRepository),
     onDelete(x) {
       const table = this.$refs.table;
       console.log(x);

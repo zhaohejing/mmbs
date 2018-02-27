@@ -1,51 +1,130 @@
 import Mmbs from 'mmbs'
-const model = {
-  // 查询对象
-  Query: new Mmbs.Query(Mmbs.User),
-  insert: model => {
+
+/*
+ * @params query 查询对象
+ * @params filter 过滤条件
+ * @params count 是否求个数
+ */
+async function ChangeFilter(query, filter) {
+  if (filter.params) {
+    filter.params.forEach(v => {
+      // 等值查询
+      if (v.b === "=" && v.c !== undefined && v.c !== "") {
+        query.equalTo(v.a, v.c);
+      }
+      // 不等值查询
+      if (v.b === "<>" && v.c !== undefined) {
+        query.notEqualTo(v.a, v.c);
+      }
+      // 小于
+      if (v.b === "<" && v.c !== undefined) {
+        query.lessThan(v.a, v.c);
+      }
+      // 小于等于
+      if (v.b === "<=" && v.c !== undefined) {
+        query.lessThanOrEqualTo(v.a, v.c);
+      }
+      // 大于
+      if (v.b === ">" && v.c !== undefined) {
+        query.greaterThan(v.a, v.c);
+      }
+      // 大于等于
+      if (v.b === ">=" && v.c !== undefined) {
+        query.greaterThanOrEqualTo(v.a, v.c);
+      }
+      // 正序
+      if (v.b === "+") {
+        query.ascending(v.a);
+      }
+      // 倒序
+      if (v.b === "-") {
+        query.descending(v.a);
+      }
+      // 相似查询
+      if (v.b === "%" && v.c !== undefined) {
+        query.startsWith(v.a, v.c);
+      }
+      // 反 相似查询
+      if (v.b === "!%" && v.c !== undefined) {
+        query.notstartsWith(v.a, v.c);
+      }
+      // 获取字段
+      if (v.b === "*" && v.c !== undefined) {
+        query.select(...v.c);
+      }
+    })
+  }
+  const count = await query.count();
+  if (filter.skipCount && filter.skipCount >= 0) {
+    query.skip(filter.skipCount);
+  } else {
+    query.skip(0);
+  }
+  if (filter.maxResultCount && filter.maxResultCount >= 0) {
+    query.limit(filter.maxResultCount);
+  } else {
+    query.limit(10);
+  }
+  const list = await query.find();
+  return {
+    total: count,
+    rows: list
+  }
+}
+
+
+const User = class {
+  constructor() {
+    this.Context = Mmbs.User
+  }
+
+  // 获取空对象
+  applyself(key) {
+    if (!key || key === "") return null;
+    const temp = new this.Context();
+    temp.id = key;
+    return temp
+  }
+  insert(model) {
     const user = new Mmbs.User();
     const acl = new Mmbs.ACL();
     acl.setRoleWriteAccess("管理员", true)
     acl.setPublicReadAccess(true)
     user.setACL(acl);
     return user.save(model)
-  },
-  signUp: model => {
+  }
+  signUp(model) {
     const user = new Mmbs.User();
     const acl = new Mmbs.ACL();
     acl.setRoleWriteAccess("管理员", true)
     acl.setPublicReadAccess(true)
     user.setACL(acl);
     return user.signUp(model)
-  },
+  }
   // 更新
-  update: (mo, change) => {
+  update(mo, change) {
     for (const x in change) {
       const temp = mo.get(x);
       if (temp == null || !temp || temp === undefined) continue;
       mo.set(x, change[x])
     }
     return mo.save();
-  },
+  }
   // 删除
-  delete: mo => mo.destroy(),
+  delete(mo) {
+    mo.destroy()
+  }
   // 查询
-  find: params => {
-    for (const param in params) {
-      if (param === "skipCount") model.Query.skip(params[param])
-      if (param === "maxResultCount") model.Query.limit(params[param])
-    }
-    return model.Query.find()
-  },
-  count: params => {
-    for (const param in params) {
-      if (param === "a") model.Query.limit(params[param])
-    }
-    return model.Query.count()
-  },
+  find(params) {
+    return ChangeFilter(new Mmbs.Query(this.Context), params);
+  }
   // 首个
-  first: () => model.Query.first(),
+  first() {
+    return new Mmbs.Query(this.Context).first()
+  }
   // 单个
-  findOne: key => model.Query.get(key)
+  findOne(key) {
+    return new Mmbs.Query(this.Context).get(key)
+  }
 }
-export default model
+export default User
