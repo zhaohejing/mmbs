@@ -92,7 +92,6 @@ Mmbs.Cloud.define("updateRole", async function (req, res) {
         res.error(err)
     }
 })
-
 //删除角色
 Mmbs.Cloud.define("deleteRole", async function (req, res) {
     try {
