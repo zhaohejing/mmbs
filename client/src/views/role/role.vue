@@ -9,6 +9,7 @@
       <template slot="columns">
         <el-table-column property="id" label="唯一编号"></el-table-column>
         <el-table-column property="attributes.name" label="名称"></el-table-column>
+        <el-table-column property="attributes.remark" label="编号"></el-table-column>
         <el-table-column property="attributes.createdAt" label="创建时间">
           <template slot-scope="scope">
             <span>{{ scope.row.attributes.createdAt}}</span>
@@ -16,7 +17,7 @@
         </el-table-column>
         <el-table-column property="" label="操作">
           <template slot-scope="scope">
-            <el-button  type="default" class="add" icon="plus" @click="onEdit(scope.row.id)">编辑</el-button>
+            <el-button  type="default" class="add" icon="plus" @click="onUpdate(scope.row)">编辑</el-button>
             <el-button type="default" class="delete" icon="delete" @click="onDelete(scope.row)">删除</el-button>
           </template>
         </el-table-column>
@@ -44,8 +45,7 @@ export default {
     api: _roleRepository.find.bind(_roleRepository),
     onDelete(x) {
       const table = this.$refs.table;
-      console.log(x);
-      _roleRepository.delete(x).then(r => {
+      _roleRepository.deleteRole(x).then(r => {
         if (r) {
           table.initData();
         }
@@ -55,8 +55,24 @@ export default {
       const table = this.$refs.table;
       _roleRepository
         .saveRole({
-          name: "admin" + Math.ceil(Math.random() * 1000),
+          name: "role_" + Math.ceil(Math.random() * 1000),
+          remark: "remark_" + Math.ceil(Math.random() * 1000),
           menus: ["nxwZ2lzvNM", "gOhE7A14Ay", "DXTGXGiei9"]
+        })
+        .then(r => {
+          console.log(r);
+          if (r) {
+            table.initData();
+          }
+        });
+    },
+    onUpdate(model) {
+      const table = this.$refs.table;
+      _roleRepository
+        .updateRole({
+          id: model.id,
+          remark: "remark_" + Math.ceil(Math.random() * 1000),
+          menus: ["McY0h6EeSD", "gOhE7A14Ay", "90VM5GBSWS"]
         })
         .then(r => {
           console.log(r);

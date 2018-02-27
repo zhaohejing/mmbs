@@ -77,57 +77,25 @@ const Role = class {
   constructor() {
     this.Context = Mmbs.Role
   }
-  // 插入
-  insert(model, role = null) {
-    const temp = new this.Context();
-    const acl = new Mmbs.ACL();
-    if (role) {
-      acl.setRoleWriteAccess(role, true)
-      acl.setRoleReadAccess(role, true)
-    } else {
-      acl.setPublicReadAccess(true)
-      acl.setPublicWriteAccess(true)
-    }
-    temp.setACL(acl)
-    return temp.save(model)
-  }
+
   async saveRole(model) {
     const res = await Mmbs.Cloud.run("saveRole", model)
     return res
   }
-  // 获取空对象
-  applyself(key) {
-    if (!key || key === "") return null;
-    const temp = new this.Context();
-    temp.id = key;
-    return temp
+  async updateRole(model) {
+    const res = await Mmbs.Cloud.run("updateRole", model)
+    return res
   }
+
   async getUserRoles() {
     const res = await Mmbs.Cloud.run("getUserRoles")
     return res
   }
 
-  // 编辑
-  modify(old, current, role = null) {
-    for (const x in current) {
-      const temp = old.get(x);
-      if (temp == null || !temp || temp === undefined) continue;
-      old.set(x, current[x])
-    }
-    const acl = new Mmbs.ACL();
-    if (role) {
-      acl.setRoleWriteAccess(role, true)
-      acl.setRoleReadAccess(role, true)
-    } else {
-      acl.setPublicReadAccess(true)
-      acl.setRoleReadAccess(true)
-    }
-    temp.setACL(acl)
-    return old.save();
-  }
   // 删除
-  delete(mo) {
-    return mo.destroy()
+  async deleteRole(mo) {
+    const res = await Mmbs.Cloud.run("deleteRole", mo)
+    return res
   }
   // 查询
   find(params) {
