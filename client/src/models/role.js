@@ -102,14 +102,11 @@ const Role = class {
     return mo.destroy()
   }
   // 获取所有菜单项
-  async getAllMenus() {
-    return await Mmbs.Cloud.run("getAllMenus")
+  async getAllMenus(roleId) {
+    return await Mmbs.Cloud.run("getAllMenus", {
+      roleId
+    })
   }
-  // 获取所有菜单项
-  async getUserMenus() {
-    return await Mmbs.Cloud.run("getUserMenus")
-  }
-
   // 首个
   first() {
     return new Mmbs.Query(this.Context).first()

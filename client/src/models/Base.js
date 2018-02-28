@@ -126,6 +126,10 @@ const BaseModel = class {
   find(params) {
     return ChangeFilter(new Mmbs.Query(this.Context), params);
   }
+  // 查询
+  findAll() {
+    return new Mmbs.Query(this.Context).find();
+  }
   // 首个
   first() {
     return new Mmbs.Query(this.Context).first()

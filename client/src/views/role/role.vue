@@ -85,11 +85,11 @@ export default {
       });
     },
     onCreate() {
-      this.initTree(false);
+      this.initTree(null, false);
     },
-    initTree(state) {
+    initTree(roleId, state) {
       const _self = this;
-      _roleRepository.getAllMenus().then(r => {
+      _roleRepository.getAllMenus(roleId).then(r => {
         const treeData = _self.$converToTreedata(r.all, null, "parent");
         /* 获取叶子节点名称 */
         const getLeafPermissions = () => {
@@ -119,15 +119,14 @@ export default {
       const _self = this;
       _roleRepository.findOne(mo.id).then(r => {
         _self.form = { id: r.id, name: r.get("name"), remark: r.get("remark") };
-        _self.initTree(true);
+        _self.initTree(r.id, true);
       });
     },
     save() {
-      debugger;
       const table = this.$refs.table;
       const tree = this.$refs.tree.getCheckedKeys();
       this.form.menus = tree;
-      _roleRepository.saveRole(this.form).then(r => {
+      _roleRepository.updateRole(this.form).then(r => {
         console.log(r);
         if (r) {
           table.initData();
