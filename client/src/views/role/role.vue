@@ -1,6 +1,6 @@
 <template>
   <div>
-    <m-table ref="table"  :search-api="api">
+    <m-table ref="table" :search-api="api">
       <!--操作按鈕-->
       <template slot="buttons">
         <el-button type="default" class="add" icon="plus" @click="onCreate">添加</el-button>
@@ -17,12 +17,38 @@
         </el-table-column>
         <el-table-column property="" label="操作">
           <template slot-scope="scope">
-            <el-button  type="default" class="add" icon="plus" @click="onUpdate(scope.row)">编辑</el-button>
+            <el-button type="default" class="add" icon="plus" @click="onUpdate(scope.row)">编辑</el-button>
             <el-button type="default" class="delete" icon="delete" @click="onDelete(scope.row)">删除</el-button>
           </template>
         </el-table-column>
       </template>
     </m-table>
+
+    <el-dialog title="角色操作" :visible.sync="show" width="50%">
+      <el-tabs v-model="first">
+        <el-tab-pane label="角色信息" name="first">
+          <el-form ref="form" :model="form" label-width="80px">
+            <el-form-item  label="角色名称">
+              <el-input  v-model="form.name"></el-input>
+            </el-form-item>
+            <el-form-item label="角色备注">
+              <el-input v-model="form.remark"></el-input>
+            </el-form-item>
+          </el-form>
+        </el-tab-pane>
+        <el-tab-pane label="权限信息" name="second">
+          <el-tree ref="tree" :data="tree" show-checkbox node-key="id"
+          :default-expanded-keys="defaultExpanded"
+           :default-checked-keys="defaultChecked"
+            :props="defaultProps">
+          </el-tree>
+        </el-tab-pane>
+      </el-tabs>
+      <span slot="footer" class="dialog-footer">
+        <el-button @click="cancel">取 消</el-button>
+        <el-button type="primary" @click="save">确 定</el-button>
+      </span>
+    </el-dialog>
   </div>
 </template>
 <script>
@@ -32,54 +58,86 @@ export default {
   name: "menudash",
   data() {
     return {
-      a: "wwww",
-      params: {}
+      first: "first",
+      params: {},
+      form: {},
+      show: false,
+      tree: [],
+      defaultProps: {
+        children: "children",
+        label: "label"
+      },
+      defaultChecked: [],
+      defaultExpanded: []
     };
   },
   created() {
-    _roleRepository.getUserRoles().then(r => {
-      console.log(r);
-    });
+    console.log(1);
   },
   methods: {
     api: _roleRepository.find.bind(_roleRepository),
     onDelete(x) {
       const table = this.$refs.table;
-      _roleRepository.deleteRole(x).then(r => {
+      _roleRepository.delete(x).then(r => {
         if (r) {
           table.initData();
         }
       });
     },
     onCreate() {
-      const table = this.$refs.table;
-      _roleRepository
-        .saveRole({
-          name: "role_" + Math.ceil(Math.random() * 1000),
-          remark: "remark_" + Math.ceil(Math.random() * 1000),
-          menus: ["nxwZ2lzvNM", "gOhE7A14Ay", "DXTGXGiei9"]
-        })
-        .then(r => {
-          console.log(r);
-          if (r) {
-            table.initData();
-          }
-        });
+      this.initTree(false);
     },
-    onUpdate(model) {
+    initTree(state) {
+      const _self = this;
+      _roleRepository.getAllMenus().then(r => {
+        const treeData = _self.$converToTreedata(r.all, null, "parent");
+        /* 获取叶子节点名称 */
+        const getLeafPermissions = () => {
+          const leafs = [],
+            has = r.self;
+          has.forEach(item => {
+            const node = r.all.find(
+              menu => menu.attributes.name === item.attributes.name
+            );
+            const hasChild = node && node.children && node.children.length > 0;
+            if (!hasChild) {
+              leafs.push(item.id);
+            }
+          });
+          return leafs;
+        };
+        if (state) {
+          /* 默认展开和选中 */
+          _self.defaultChecked = getLeafPermissions();
+          _self.defaultExpanded = this.defaultChecked;
+        }
+        _self.tree = treeData;
+        _self.show = true;
+      });
+    },
+    onUpdate(mo) {
+      const _self = this;
+      _roleRepository.findOne(mo.id).then(r => {
+        _self.form = { id: r.id, name: r.get("name"), remark: r.get("remark") };
+        _self.initTree(true);
+      });
+    },
+    save() {
+      debugger;
       const table = this.$refs.table;
-      _roleRepository
-        .updateRole({
-          id: model.id,
-          remark: "remark_" + Math.ceil(Math.random() * 1000),
-          menus: ["McY0h6EeSD", "gOhE7A14Ay", "90VM5GBSWS"]
-        })
-        .then(r => {
-          console.log(r);
-          if (r) {
-            table.initData();
-          }
-        });
+      const tree = this.$refs.tree.getCheckedKeys();
+      this.form.menus = tree;
+      _roleRepository.saveRole(this.form).then(r => {
+        console.log(r);
+        if (r) {
+          table.initData();
+          this.show = false;
+        }
+      });
+    },
+    cancel() {
+      this.form = {};
+      this.show = false;
     }
   }
 };

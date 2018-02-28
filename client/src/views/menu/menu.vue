@@ -57,7 +57,6 @@ export default {
       });
     },
     onCreate(id) {
-      debugger;
       const parent = menuRepository.applyself(id);
       const table = this.$refs.table;
       const role = this.roles[0];

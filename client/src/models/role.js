@@ -79,28 +79,37 @@ const Role = class {
   }
 
   async saveRole(model) {
-    const res = await Mmbs.Cloud.run("saveRole", model)
-    return res
+    return await Mmbs.Cloud.run("saveRole", model)
   }
   async updateRole(model) {
-    const res = await Mmbs.Cloud.run("updateRole", model)
-    return res
+    return await Mmbs.Cloud.run("updateRole", model)
   }
 
   async getUserRoles() {
-    const res = await Mmbs.Cloud.run("getUserRoles")
-    return res
+    return await Mmbs.Cloud.run("getUserRoles")
   }
 
   // 删除
   async deleteRole(mo) {
-    const res = await Mmbs.Cloud.run("deleteRole", mo)
-    return res
+    return await Mmbs.Cloud.run("deleteRole", mo)
   }
   // 查询
   find(params) {
     return ChangeFilter(new Mmbs.Query(this.Context), params);
   }
+  // 删除
+  delete(mo) {
+    return mo.destroy()
+  }
+  // 获取所有菜单项
+  async getAllMenus() {
+    return await Mmbs.Cloud.run("getAllMenus")
+  }
+  // 获取所有菜单项
+  async getUserMenus() {
+    return await Mmbs.Cloud.run("getUserMenus")
+  }
+
   // 首个
   first() {
     return new Mmbs.Query(this.Context).first()

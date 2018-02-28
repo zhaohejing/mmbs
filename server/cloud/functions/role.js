@@ -75,7 +75,7 @@ Mmbs.Cloud.define("updateRole", async function (req, res) {
                     var acl = r.getACL();
                     delete acl.permissionsById["role:" + oldName]
                     if (obj.menus.includes(r.id)) {
-                        acl.permissionsById["role:" + obj.name] = {
+                        acl.permissionsById["role:" + oldName] = {
                             read: true
                         };
                     }

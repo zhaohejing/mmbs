@@ -15,6 +15,28 @@ Vue.use(ElementUI, {
   size: 'small'
 })
 Vue.component("m-table", Mtable)
+/*格式化日期*/
+Vue.prototype.$fmtTime = (date, format) => {
+  return dtime(date).format(format || 'YYYY-MM-DD HH:mm:ss')
+}
+/* 列表格式转换成树格式
+ * @param data 数组
+ * @param parentId 父节点id
+ * @param pidField 父节点字段名
+ */
+const converToTreedata = (data, parentId, pidField) => {
+  var list = []
+  data.forEach((item) => {
+    item.label = item.attributes.displayName;
+    if (item.attributes[pidField] == parentId) {
+      item.children = converToTreedata(data, item.id, pidField)
+      data.children = item.children
+      list.push(item)
+    }
+  })
+  return list
+}
+Vue.prototype.$converToTreedata = converToTreedata;
 /* eslint-disable no-new */
 new Vue({
   el: '#app',

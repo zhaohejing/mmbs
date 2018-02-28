@@ -4,3 +4,4 @@ require("./ccap")
 require("./role")
 //用户
 require("./user")
+require("./menu")
