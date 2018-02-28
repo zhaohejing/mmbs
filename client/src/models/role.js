@@ -88,7 +88,6 @@ const Role = class {
   async getUserRoles() {
     return await Mmbs.Cloud.run("getUserRoles")
   }
-
   // 删除
   async deleteRole(mo) {
     return await Mmbs.Cloud.run("deleteRole", mo)

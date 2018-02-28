@@ -24,7 +24,7 @@
       </template>
     </m-table>
 
-    <el-dialog title="角色操作" :visible.sync="show" width="50%">
+    <el-dialog title="角色操作" :visible.sync="show" width="30%">
       <el-tabs v-model="first">
         <el-tab-pane label="角色信息" name="first">
           <el-form ref="form" :model="form" label-width="80px">

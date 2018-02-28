@@ -9,9 +9,15 @@ Mmbs.Cloud.define("saveUser", async function (req, res) {
         }
         let obj = req.params;
         let user = new Mmbs.User()
+        var acl = new Mmbs.ACL();
+        acl.setRoleWriteAccess(config.adminRoleName, true)
+        user.setACL(acl)
         ret = await user.save(obj, {
             useMasterKey: true
         })
+
+        res.success(ret)
+
         res.success(ret)
     } catch (err) {
         res.error(err)
@@ -68,8 +74,16 @@ Mmbs.Cloud.define("getUserRoles", async function (req, res) {
     try {
         let current = req.user;
         let user = Mmbs.User.createWithoutData(current.id)
-        let result = await utils.getUserRoles(user)
-        res.success(result)
+        var roleQuery = new Mmbs.Query(Mmbs.Role);
+        let all = await roleQuery.find({
+            useMasterKey: true
+        })
+        roleQuery.equalTo("users", user);
+        let has = await roleQuery.find();
+        res.success({
+            all,
+            has
+        })
     } catch (err) {
         res.error(err)
     }
