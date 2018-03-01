@@ -60,7 +60,6 @@ export default {
     MSide
   },
   created() {
-    debugger;
     const current = Mmbs.User.current();
     if (!current) {
       this.$router.push({
@@ -78,7 +77,6 @@ export default {
       this.extend = !this.extend;
     },
     async command(mond) {
-      debugger;
       if (mond === "signout") {
         await Mmbs.User.logOut();
         this.$router.push({

@@ -13,14 +13,14 @@ async function init() {
             metaData: "",
             sort: 1,
             url: "",
-            icon: "el-icon-tickets",
+            icon: "el-icon-date",
             children: [{
                     name: "box",
                     displayName: "货柜管理",
                     metaData: "",
                     sort: 1,
                     url: "/box",
-                    icon: "el-icon-tickets"
+                    icon: "el-icon-star-on"
 
                 },
                 {
@@ -29,7 +29,7 @@ async function init() {
                     metaData: "",
                     sort: 2,
                     url: "/product",
-                    icon: "el-icon-tickets"
+                    icon: "el-icon-more-outline"
 
                 }
             ]
@@ -47,7 +47,7 @@ async function init() {
                     metaData: "",
                     sort: 1,
                     url: "/order",
-                    icon: "el-icon-tickets"
+                    icon: "el-icon-picture"
 
                 },
                 {
@@ -56,7 +56,7 @@ async function init() {
                     metaData: "",
                     sort: 2,
                     url: "/payoff",
-                    icon: "el-icon-tickets"
+                    icon: "el-icon-rank"
 
                 }
             ]
@@ -67,14 +67,14 @@ async function init() {
             metaData: "",
             sort: 3,
             url: "",
-            icon: "el-icon-tickets",
+            icon: "el-icon-setting",
             children: [{
                     name: "user",
                     displayName: "用户管理",
                     metaData: "",
                     sort: 1,
                     url: "/user",
-                    icon: "el-icon-tickets"
+                    icon: "el-icon-location"
 
                 },
                 {
@@ -83,7 +83,7 @@ async function init() {
                     metaData: "",
                     sort: 2,
                     url: "/role",
-                    icon: "el-icon-tickets"
+                    icon: "el-icon-service"
                 },
                 {
                     name: "menu",
@@ -91,7 +91,7 @@ async function init() {
                     metaData: "",
                     sort: 3,
                     url: "/menu",
-                    icon: "el-icon-tickets"
+                    icon: "el-icon-printer"
                 },
                 {
                     name: "cate",
@@ -99,7 +99,7 @@ async function init() {
                     metaData: "",
                     sort: 4,
                     url: "/cate",
-                    icon: "el-icon-tickets"
+                    icon: "el-icon-mobile-phone"
                 }
             ]
         }
@@ -112,7 +112,8 @@ async function init() {
             let acl = new Mmbs.ACL();
             acl.setPublicReadAccess(false);
             acl.setPublicWriteAccess(false);
-
+            acl.setRoleWriteAccess(config.adminRoleName, true)
+            acl.setRoleReadAccess(config.adminRoleName, true)
             m.set("name", item.name);
             m.set("displayName", item.displayName);
             m.set("metaData", item.metaData);

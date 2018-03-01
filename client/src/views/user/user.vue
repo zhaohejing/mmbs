@@ -67,7 +67,6 @@ export default {
   methods: {
     api: _userRepository.find.bind(_userRepository),
     onDelete(x) {
-      debugger;
       const table = this.$refs.table;
       _userRepository
         .delete(x)
