@@ -126,13 +126,24 @@ export default {
       const table = this.$refs.table;
       const tree = this.$refs.tree.getCheckedKeys();
       this.form.menus = tree;
-      _roleRepository.updateRole(this.form).then(r => {
-        console.log(r);
-        if (r) {
-          table.initData();
-          this.show = false;
-        }
-      });
+      if (this.form.id) {
+        _roleRepository.updateRole(this.form).then(r => {
+          console.log(r);
+          if (r) {
+            table.initData();
+            this.show = false;
+          }
+        });
+      } else {
+        _roleRepository.saveRole(this.form).then(r => {
+          console.log(r);
+          if (r) {
+            table.initData();
+            this.show = false;
+          }
+        });
+      }
+      this.form = {};
     },
     cancel() {
       this.form = {};

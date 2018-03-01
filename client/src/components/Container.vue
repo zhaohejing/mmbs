@@ -60,6 +60,7 @@ export default {
     MSide
   },
   created() {
+    debugger;
     const current = Mmbs.User.current();
     if (!current) {
       this.$router.push({
@@ -69,7 +70,6 @@ export default {
       this.name = current.attributes.username;
       _menuRepository.findAll().then(r => {
         this.menus = this.$converToTreedata(r, null, "parent");
-        console.log(this.menus);
       });
     }
   },
@@ -77,9 +77,10 @@ export default {
     change() {
       this.extend = !this.extend;
     },
-    command(mond) {
+    async command(mond) {
+      debugger;
       if (mond === "signout") {
-        Mmbs.User.logOut();
+        await Mmbs.User.logOut();
         this.$router.push({
           path: "/login"
         });

@@ -27,23 +27,14 @@
 </template>
 <script>
 import Menu from "@/models/menu";
-import Role from "@/models/role";
 const menuRepository = new Menu();
-const roleRepository = new Role();
 export default {
   name: "menudash",
   data() {
     return {
-      a: "wwww",
       params: {},
       roles: []
     };
-  },
-  created() {
-    roleRepository.find({}).then(r => {
-      this.roles = r;
-      console.log(r);
-    });
   },
   methods: {
     api: menuRepository.find.bind(menuRepository),

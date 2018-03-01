@@ -16,7 +16,7 @@
         </el-table-column>
         <el-table-column property="" label="操作">
           <template slot-scope="scope">
-            <el-button type="default" class="add" icon="plus" @click="onEdit(scope.row.id)">编辑</el-button>
+            <el-button type="default" class="add" icon="plus" @click="onUpdate(scope.row.id)">编辑</el-button>
             <el-button type="default" class="delete" icon="delete" @click="onDelete(scope.row)">删除</el-button>
           </template>
         </el-table-column>
@@ -32,7 +32,7 @@
           <el-input v-model="form.name"></el-input>
         </el-form-item>
         <el-form-item label="密码">
-          <el-input v-model="form.password"></el-input>
+          <el-input type="password"  v-model="form.password"></el-input>
         </el-form-item>
         <el-form-item label="邮箱">
           <el-input v-model="form.email"></el-input>
@@ -53,9 +53,7 @@
 </template>
 <script>
 import User from "@/models/user";
-import Role from "@/models/role";
 const _userRepository = new User();
-const _roleRepository = new Role();
 export default {
   name: "user",
   data() {
@@ -63,20 +61,13 @@ export default {
       params: {},
       show: false,
       form: { role: [] },
-      roles: [],
-      has: []
+      roles: []
     };
-  },
-  created() {
-    _roleRepository.getUserRoles().then(r => {
-      this.roles = r.all;
-      this.form.role = r.has.map(c => c.get("name"));
-      console.log(r);
-    });
   },
   methods: {
     api: _userRepository.find.bind(_userRepository),
     onDelete(x) {
+      debugger;
       const table = this.$refs.table;
       _userRepository
         .delete(x)
@@ -94,19 +85,39 @@ export default {
       this.show = true;
     },
     onUpdate(mo) {
-      console.log(mo);
-      this.show = true;
+      _userRepository.getUserInfo(mo).then(r => {
+        this.form = {
+          username: r.user.get("username"),
+          name: r.user.get("name"),
+          email: r.user.get("email")
+        };
+        this.roles = r.all;
+        this.form.role = r.has.map(c => c.get("name"));
+        this.show = true;
+      });
     },
     save() {
       const table = this.$refs.table;
-      _userRepository.insert(this.form).then(r => {
-        if (r) {
-          table.initData();
-          this.show = false;
-        }
-      });
+      if (this.form.id) {
+        _userRepository.updateUser(this.form).then(r => {
+          if (r) {
+            table.initData();
+            this.form = { role: [] };
+            this.show = false;
+          }
+        });
+      } else {
+        _userRepository.saveUser(this.form).then(r => {
+          if (r) {
+            table.initData();
+            this.form = { role: [] };
+            this.show = false;
+          }
+        });
+      }
     },
     cancel() {
+      this.form = { role: [] };
       this.show = false;
     }
   }

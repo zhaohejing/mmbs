@@ -85,13 +85,16 @@ const User = class {
     temp.id = key;
     return temp
   }
-  insert(model) {
-    const user = new Mmbs.User();
-    const acl = new Mmbs.ACL();
-    acl.setRoleWriteAccess("管理员", true)
-    acl.setPublicReadAccess(true)
-    user.setACL(acl);
-    return user.save(model)
+  async saveUser(mo) {
+    return await Mmbs.Cloud.run("saveUser", mo)
+  }
+  async updateUser(mo) {
+    return await Mmbs.Cloud.run("updateUser", mo)
+  }
+  async getUserInfo(key) {
+    return await Mmbs.Cloud.run("getUserInfo", {
+      id: key
+    })
   }
   signUp(model) {
     const user = new Mmbs.User();
@@ -101,18 +104,9 @@ const User = class {
     user.setACL(acl);
     return user.signUp(model)
   }
-  // 更新
-  update(mo, change) {
-    for (const x in change) {
-      const temp = mo.get(x);
-      if (temp == null || !temp || temp === undefined) continue;
-      mo.set(x, change[x])
-    }
-    return mo.save();
-  }
   // 删除
   delete(mo) {
-    mo.destroy()
+    return mo.destroy()
   }
   // 查询
   find(params) {
@@ -121,10 +115,6 @@ const User = class {
   // 首个
   first() {
     return new Mmbs.Query(this.Context).first()
-  }
-  // 单个
-  findOne(key) {
-    return new Mmbs.Query(this.Context).get(key)
   }
 }
 export default User

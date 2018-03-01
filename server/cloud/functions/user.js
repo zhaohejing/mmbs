@@ -1,4 +1,5 @@
 const utils = require('../utils/index');
+const config = require('../../config/config');
 //保存用户
 Mmbs.Cloud.define("saveUser", async function (req, res) {
     try {
@@ -9,15 +10,24 @@ Mmbs.Cloud.define("saveUser", async function (req, res) {
         }
         let obj = req.params;
         let user = new Mmbs.User()
+        user.set("username", obj.username);
+        user.set("name", obj.name);
+        user.set("password", obj.password);
+        user.set("email", obj.email);
         var acl = new Mmbs.ACL();
         acl.setRoleWriteAccess(config.adminRoleName, true)
+        acl.setRoleReadAccess(config.adminRoleName, true)
         user.setACL(acl)
-        ret = await user.save(obj, {
+        ret = await user.save(null, {
             useMasterKey: true
         })
-
-        res.success(ret)
-
+        //分配角色
+        if (obj.role) {
+            // obj.role.forEach(element => {
+            //     utils.setUserRole(ret, element)
+            // });
+            await Promise.all(obj.role.map(async (val) => await utils.setUserRole(ret, val)));
+        }
         res.success(ret)
     } catch (err) {
         res.error(err)
@@ -37,13 +47,17 @@ Mmbs.Cloud.define("updateUser", async function (req, res) {
         let user = Mmbs.User.createWithoutData(obj.id)
         let props = Object.getOwnPropertyNames(obj)
         props.map(p => {
-            if (['id', 'createdAt', 'updatedAt'].indexOf(p) < 0 && typeof (obj[p]) !== 'undefined') {
+            if (['id', 'username', 'role', 'createdAt', 'updatedAt'].indexOf(p) < 0 && typeof (obj[p]) !== 'undefined') {
                 user.set(p, obj[p])
             }
         })
-        let result = await user.save(obj, {
+        let result = await user.save(null, {
             useMasterKey: true
         })
+        if (obj.role) {
+            utils.removeUserAllRole(result);
+            await Promise.all(obj.role.map(async (val) => await utils.setUserRole(ret, val)));
+        }
         res.success(ret)
     } catch (err) {
         res.error(err)
@@ -89,61 +103,26 @@ Mmbs.Cloud.define("getUserRoles", async function (req, res) {
     }
 })
 
-//设置用户为某一角色
-Mmbs.Cloud.define("setUserRole", async function (req, res) {
+//获取用户详情和角色
+Mmbs.Cloud.define("getUserInfo", async function (req, res) {
     try {
-        let ret = await utils.isAdminRole(req.user);
-        if (ret.status != 0) {
-            res.error(ret.err)
-            return;
-        }
         let obj = req.params;
-        let user = Mmbs.User.createWithoutData(obj.id)
-        await utils.removeUserAllRole(user)
-        // 单个角色授权
-        if (typeof (obj.roleName) === 'string') {
-            let result = await utils.setUserRole(user, obj.roleName)
-        } else if (typeof (obj.roleName) === 'object' || typeof (obj.roleName) === 'array') {
-            // 多个角色授权
-            obj.roleName.map(async (roleName) => {
-                await utils.setUserRole(user, roleName)
-            })
-        }
-        res.success(ret)
-    } catch (err) {
-        res.error(err)
-    }
-})
-
-//从角色中移除用户
-Mmbs.Cloud.define("removeUserRole", async function (req, res) {
-    try {
-        let ret = await utils.isAdminRole(req.user);
-        if (ret.status != 0) {
-            res.error(ret.err)
-            return;
-        }
-        let obj = req.params;
-        let user = Mmbs.User.createWithoutData(obj.id)
-        let res = await utils.removeUserRole(user, obj.roleName)
-        res.success(ret)
-    } catch (err) {
-        res.error(err)
-    }
-})
-
-//把用户从所有角色中移除
-Mmbs.Cloud.define("removeUserAllRole", async function (req, res) {
-    try {
-        let ret = await utils.isAdminRole(req.user);
-        if (ret.status != 0) {
-            res.error(ret.err)
-            return
-        }
-        let obj = req.params;
-        let user = Mmbs.User.createWithoutData(obj.id)
-        let res = await utils.removeUserAllRole(user)
-        res.success(ret)
+        let query = new Mmbs.Query(Mmbs.User);
+        let user = await query.get(obj.id, {
+            useMasterKey: true
+        })
+        let temp = Mmbs.User.createWithoutData(user.id)
+        var roleQuery = new Mmbs.Query(Mmbs.Role);
+        let all = await roleQuery.find({
+            useMasterKey: true
+        })
+        roleQuery.equalTo("users", temp);
+        let has = await roleQuery.find();
+        res.success({
+            user,
+            all,
+            has
+        })
     } catch (err) {
         res.error(err)
     }

@@ -37,6 +37,15 @@ const converToTreedata = (data, parentId, pidField) => {
   return list
 }
 Vue.prototype.$converToTreedata = converToTreedata;
+router.beforeEach((to, from, next) => {
+  const current = Mmbs.User.current();
+  if (!current && to.path != "/login") {
+    next("/login")
+  } else {
+    next()
+  }
+})
+
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
