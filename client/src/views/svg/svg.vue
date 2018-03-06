@@ -53,8 +53,8 @@ export default {
         node.setAttribute(t, this.json.action[t]);
       }
       const str = node.outerHTML;
-      node.outerHTML = str.replace("animatetransform", "animateTransform ");
-      graph.appendChild(node);
+      const temo = str.replace("animatetransform", "animateTransform ");
+      graph.innerHTML += temo;
     },
     genderSvg() {
       return 1;
