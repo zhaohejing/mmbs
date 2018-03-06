@@ -1,7 +1,7 @@
 const config = {}
 
 // port for running server
-config.port = 11111; //默认端口号
+config.port = 3080; //默认端口号
 config.urlServerPath = '/mmbs'; //通过http://ip:port/urlServerPath去访问api
 config.urlDashboardPath = '/index'; //通过http://ip:port/dashboard去访问控制面板
 config.adminRoleName = 'administrator'; //管理员的角色名称

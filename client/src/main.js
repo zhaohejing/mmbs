@@ -5,9 +5,10 @@ import App from './App'
 import router from './router'
 import Mmbs from 'mmbs'
 import Mtable from 'components/m-table'
+import dtime from 'time-formater'
 /* eslint-disable */
 Mmbs.initialize("1q2w3e4r5t6y7u8i9o0p");
-Mmbs.serverURL = 'http://127.0.0.1:11111/mmbs';
+Mmbs.serverURL = 'http://127.0.0.1:3080/mmbs';
 import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
 Vue.config.productionTip = false
@@ -36,7 +37,22 @@ const converToTreedata = (data, parentId, pidField) => {
   })
   return list
 }
+const converToTreeCate = (data, parentId, pidField) => {
+  var list = []
+  data.forEach((item) => {
+    item.label = item.attributes.name;
+    let p = item.attributes[pidField]
+    p = p == null ? null : p.id
+    if (p == parentId) {
+      item.children = converToTreeCate(data, item.id, pidField)
+      data.children = item.children
+      list.push(item)
+    }
+  })
+  return list
+}
 Vue.prototype.$converToTreedata = converToTreedata;
+Vue.prototype.$converToTreeCate = converToTreeCate;
 router.beforeEach((to, from, next) => {
   const current = Mmbs.User.current();
   if (!current && to.path != "/login") {

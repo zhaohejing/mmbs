@@ -29,6 +29,11 @@ export default new Router({
         path: "/cate",
         name: "cate",
         component: r => require.ensure([], () => r(require('@/views/cate/cate')), 'cate')
+      },
+      {
+        path: "/svg",
+        name: "svg",
+        component: r => require.ensure([], () => r(require('@/views/svg/svg')), 'svg')
       }
     ]
   }, {

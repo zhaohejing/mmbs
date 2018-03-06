@@ -54,7 +54,6 @@ async function ChangeFilter(query, filter) {
       }
     })
   }
-  const count = await query.count();
   if (filter.skipCount && filter.skipCount >= 0) {
     query.skip(filter.skipCount);
   } else {
@@ -65,11 +64,7 @@ async function ChangeFilter(query, filter) {
   } else {
     query.limit(10);
   }
-  const list = await query.find();
-  return {
-    total: count,
-    rows: list
-  }
+  return query;
 }
 
 
@@ -123,7 +118,14 @@ const BaseModel = class {
     return mo.destroy()
   }
   // 查询
-  find(params) {
+  async find(params) {
+    const query = ChangeFilter(new Mmbs.Query(this.Context), params);
+    return {
+      total: await query.count(),
+      rows: await query.find()
+    }
+  }
+  getContext(params) {
     return ChangeFilter(new Mmbs.Query(this.Context), params);
   }
   // 查询
