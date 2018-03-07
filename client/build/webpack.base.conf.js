@@ -42,6 +42,7 @@ module.exports = {
       'views': path.resolve(__dirname, '../src/views'),
       'styles': path.resolve(__dirname, '../src/styles'),
       'utils': path.resolve(__dirname, '../src/utils'),
+      'plugins': path.resolve(__dirname, '../src/plugins'),
       'store': path.resolve(__dirname, '../src/store'),
       'router': path.resolve(__dirname, '../src/router'),
       'mock': path.resolve(__dirname, '../src/mock'),
