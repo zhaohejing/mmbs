@@ -38,10 +38,6 @@ export default {
     };
   },
   methods: {
-    change() {
-      console.log(Svg);
-      Svg.action(this.$el, this.json);
-    },
     genderSvg() {
       return 1;
     }

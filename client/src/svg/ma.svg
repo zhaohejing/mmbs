@@ -1,13 +1,30 @@
-<svg width="320" height="320" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg">
- <!-- Created with SVG-edit - https://github.com/SVG-Edit/svgedit-->
- <g id="a" class="layer">
-  <title>a</title>
-  <rect stroke="#000000"  height="57" width="58" y="44" x="48" stroke-width="2" fill="none"/>
-  <text id="c" xml:space="preserve" text-anchor="middle" font-family="serif" font-size="24"  y="80" x="75" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="0" stroke="#000000" fill="#000000">A</text>
- </g>
- <g id="b" class="layer">
-  <title>b</title>
-  <rect  height="61" width="61" y="170" x="177" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="2" stroke="#000000" fill="none"/>
-  <text id="d" style="cursor: move;" xml:space="preserve" text-anchor="middle" font-family="serif" font-size="24"  y="207" x="208" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="0" stroke="#000000" fill="#000000">B</text>
- </g>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="272px" height="122px" version="1.1"
+  content="&lt;mxfile userAgent=&quot;Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36&quot; version=&quot;8.3.6&quot; editor=&quot;www.draw.io&quot; type=&quot;device&quot;&gt;&lt;diagram id=&quot;4d2c06f1-48fd-c678-60b7-ef64cef46a07&quot; name=&quot;第 1 页&quot;&gt;3VZNb6MwEP013AEnhBwX0m0vPeXQswMTsGIwcpxC+uvX4CGxS9htpTYrlQOy34xnPG8+ZI+kVfcoaVM+ixy4F/p555GNF4ZxHOp/D5wNQOKVAQrJcgMFV2DL3gBBH9ETy+HoKCohuGKNC2airiFTDkalFK2rthfc9drQAibANqN8ir6wXJUYVri64k/AinL0HERrI9nR7FBIcarRnxeS/fAZcUVHW+jhWNJctAYaYicPHkmlEMqsqi4F3lM70mYI+j0jvdxbQq0+cmBpDrxSfsLQd581gWLbBsamziOfPSUNqoFU0N3KIt2N6v70DssLObrmQFSg5FmroKHFAo9gvQUE962VPYRKK3EjRrFeiovla8B6gTHPcB7+O/62ZAq2Dc36fatbxiNJqSptchPoJT02por3rANtNjkqKQ6QCi7kYIBEcRwk5CIZi1JTkuwZ55ZmOnw9Lmpl4b4fRQM+mwabbqsYHb7vwWc8V5MWofruyuXQpawWNbzjBiHKWVHrbaZjBY0nPRNMt/4vFFQsz3s3ya2kDa3dp2jjfxfFndtW4wSdFvTiRgLCL0hANOGffnYmBOt7zITo7wQu382E1f1mwuoHjgST0/8zEmZL8meNhDmK7z0S9Pb6BBlk1jOPPPwB&lt;/diagram&gt;&lt;/mxfile&gt;"
+  style="background-color: rgb(255, 255, 255);">
+  <defs/>
+  <g transform="translate(0.5,0.5)">
+    <rect x="191" y="1" width="80" height="80" fill="#cccccc" stroke="#6881b3" stroke-width="2" pointer-events="none" />
+    <g transform="translate(227.5,34.5)">
+      <switch>
+        <foreignObject style="overflow:visible;" pointer-events="all" width="6" height="12" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility">
+          <div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; font-size: 12px; font-family: Helvetica; color: rgb(0, 102, 204); line-height: 1.2; vertical-align: top; width: 8px; white-space: nowrap; word-wrap: normal; text-align: center;">
+            <div xmlns="http://www.w3.org/1999/xhtml" style="display:inline-block;text-align:inherit;text-decoration:inherit;">b</div>
+          </div>
+        </foreignObject>
+        <text x="3" y="12" fill="#0066CC" text-anchor="middle" font-size="12px" font-family="Helvetica">b</text>
+      </switch>
+    </g>
+    <rect x="1" y="41" width="80" height="80" fill="#cccccc" stroke="#6881b3" stroke-width="2" pointer-events="none" />
+    <g transform="translate(37.5,74.5)">
+      <switch>
+        <foreignObject style="overflow:visible;" pointer-events="all" width="6" height="12" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility">
+          <div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; font-size: 12px; font-family: Helvetica; color: rgb(0, 102, 204); line-height: 1.2; vertical-align: top; width: 8px; white-space: nowrap; word-wrap: normal; text-align: center;">
+            <div xmlns="http://www.w3.org/1999/xhtml" style="display:inline-block;text-align:inherit;text-decoration:inherit;">a</div>
+          </div>
+        </foreignObject>
+        <text x="3" y="12" fill="#0066CC" text-anchor="middle" font-size="12px" font-family="Helvetica">a</text>
+      </switch>
+    </g>
+  </g>
 </svg>
