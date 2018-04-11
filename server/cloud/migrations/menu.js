@@ -1,5 +1,5 @@
 let SYS_MENU_CLASS_NAME = 'sys_menu'
-
+const config = require('../../config/config');
 
 async function init() {
     let query = new Mmbs.Query(Mmbs.Object.extend(SYS_MENU_CLASS_NAME))
