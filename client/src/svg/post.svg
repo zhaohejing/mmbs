@@ -1,0 +1,69 @@
+<svg width="500" height="900" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg">
+ <title>快递单可视化报表打印-180X100mm</title>
+ <g class="layer">
+  <title>Layer 1</title>
+  <rect id="svg_4" height="2" width="500" y="620" x="0" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="5" fill="#000000"/>
+  <rect id="svg_5" height="2" width="388.00001" y="683" x="0" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="5" fill="#000000"/>
+  <rect id="svg_6" height="2" width="500" y="742" x="0" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="5" fill="#000000"/>
+  <rect id="svg_12" height="124.00001" width="2" y="621" x="39" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="5" fill="#000000"/>
+  <g id="svg_13">
+   <text xml:space="preserve" text-anchor="middle" font-family="&#x27;AauxNext-Regular'" font-size="12" id="svg_7" y="644" x="26" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="null" fill="#000000">收</text>
+   <text id="svg_9" xml:space="preserve" text-anchor="middle" font-family="&#x27;AauxNext-Regular'" font-size="12" y="663.5" x="26" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="null" fill="#000000">件</text>
+   <text id="svg_11" xml:space="preserve" text-anchor="middle" font-family="&#x27;AauxNext-Regular'" font-size="12" y="719.25" x="26" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="null" fill="#000000">件</text>
+   <text id="svg_10" xml:space="preserve" text-anchor="middle" font-family="&#x27;AauxNext-Regular'" font-size="12" y="699.75" x="26" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="null" fill="#000000">寄</text>
+  </g>
+  <rect id="svg_14" height="124.00001" width="2" y="621" x="387" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="5" fill="#000000"/>
+  <g id="svg_16">
+   <rect fill-opacity="0.5" fill="#000000" height="87" width="94" y="627" x="397" id="svg_17"/>
+   <text transform="matrix(0.522223 0 0 2.175 186.704 -745.835)" fill="#ffffff" font-family="Arial" font-size="16" y="655.18875" x="452.69412" id="svg_15">QRCODE</text>
+  </g>
+  <g id="svg_19">
+   <rect fill-opacity="0.5" fill="#000000" height="43" width="275" y="553" x="164" id="svg_20"/>
+   <text transform="matrix(1.52778 0 0 1.075 -81.2778 -52.225)" fill="#ffffff" font-family="Arial" font-size="16" y="587" x="210.54545" id="svg_18">BARCODE</text>
+  </g>
+  <text xml:space="preserve" text-anchor="middle" font-family="&#x27;AauxNext-Regular'" font-size="12" id="svg_21" y="612" x="301" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="null" fill="#000000">39673701234223423423423</text>
+  <foreignObject id="svg_25" font-size="14" height="40" width="320" y="628" x="48">收件人地址</foreignObject>
+  <foreignObject id="svg_26" font-size="12" height="40" width="320" y="693" x="48">张先生 ?15921545444上海市闵行区剑川路951弄1号楼614</foreignObject>
+  <text fill="#000000" stroke-width="null" stroke-dasharray="null" stroke-linejoin="null" stroke-linecap="null" x="252" y="81" id="_numId" font-size="36" font-family="&#x27;AauxNext-Regular'" text-anchor="middle" xml:space="preserve">300 D164 00-16</text>
+  <rect fill="#000000" stroke-width="5" stroke-dasharray="null" stroke-linejoin="null" stroke-linecap="null" x="0" y="90" width="500" height="2" id="svg_2"/>
+  <rect fill="#000000" stroke-width="5" stroke-dasharray="null" stroke-linejoin="null" stroke-linecap="null" x="0" y="41" width="500" height="2" id="svg_3"/>
+  <text fill="#000000" stroke-width="null" stroke-dasharray="null" stroke-linejoin="null" stroke-linecap="null" x="439" y="26" id="svg_8" font-size="24" font-family="&#x27;AauxNext-Regular'" text-anchor="middle" xml:space="preserve">标准快递</text>
+  <rect fill="#000000" stroke-width="5" stroke-dasharray="null" stroke-linejoin="null" stroke-linecap="null" x="0" y="149" width="500" height="2" id="svg_27"/>
+  <text fill="#000000" stroke-width="null" stroke-dasharray="null" stroke-linejoin="null" stroke-linecap="null" x="87" y="129" id="_position" font-size="24" font-family="&#x27;AauxNext-Regular'" text-anchor="middle" xml:space="preserve">上海分拨包</text>
+  <g id="svg_30">
+   <rect id="svg_31" x="297" y="99" width="170.00001" height="40" fill="#000000" fill-opacity="0.5"/>
+   <text id="svg_29" x="233.60328" y="124" font-size="16" font-family="Arial" fill="#ffffff" transform="matrix(0.944444 0 0 1 123.597 -1)">BARCODE</text>
+  </g>
+  <rect height="163.99999" width="2" y="150.00001" x="365" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="5" fill="#000000" id="svg_35"/>
+  <rect height="2" width="500" y="314" x="0" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="5" fill="#000000" id="svg_36"/>
+  <rect x="0" height="2" width="365" y="250" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="5" fill="#000000" id="svg_37"/>
+  <rect height="165" width="2" y="149" x="43" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="5" fill="#000000" id="svg_38"/>
+  <g id="svg_40">
+   <text xml:space="preserve" text-anchor="middle" font-family="&#x27;AauxNext-Regular'" font-size="16" y="178" x="28" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="null" fill="#000000" id="svg_41">收</text>
+   <text xml:space="preserve" text-anchor="middle" font-family="&#x27;AauxNext-Regular'" font-size="16" y="208.5" x="28" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="null" fill="#000000" id="svg_42">件</text>
+   <text xml:space="preserve" text-anchor="middle" font-family="&#x27;AauxNext-Regular'" font-size="12" y="285.25" x="28" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="null" fill="#000000" id="svg_43">件</text>
+   <text xml:space="preserve" text-anchor="middle" font-family="&#x27;AauxNext-Regular'" font-size="12" y="265.75" x="28" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="null" fill="#000000" id="svg_44">寄</text>
+  </g>
+  <g id="svg_46">
+   <rect id="svg_47" x="41.36931" y="322.94507" width="315.99999" height="65" fill="#000000" fill-opacity="0.5"/>
+   <text id="svg_45" x="91.79969" y="336.95064" font-size="16" font-family="Arial" fill="#ffffff" transform="matrix(1.75556 0 0 1.625 -32.0124 -185.6)">BARCODE</text>
+  </g>
+  <foreignObject x="41.36931" y="401.18748" width="320" height="20" font-size="16" id="svg_49">3967370123425</foreignObject>
+  <rect id="svg_39" height="2" width="500" y="426.77839" x="-1.13069" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="5" fill="#000000"/>
+  <rect id="svg_48" height="110" width="2" y="428.59662" x="235.86931" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="5" fill="#000000"/>
+  <rect id="svg_50" height="110" width="2" y="427.59662" x="382.86931" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="5" fill="#000000"/>
+  <text xml:space="preserve" text-anchor="middle" font-family="&#x27;AauxNext-Regular'" font-size="14" id="svg_51" y="451.09657" x="269.36931" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="null" fill="#000000">签收人:</text>
+  <text id="svg_52" xml:space="preserve" text-anchor="middle" font-family="&#x27;AauxNext-Regular'" font-size="14" y="510.04476" x="265.87925" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="null" fill="#000000">时间:</text>
+  <foreignObject font-size="24" height="60" width="440" y="754.5" x="20" id="svg_33">描述</foreignObject>
+  <text xml:space="preserve" text-anchor="middle" font-family="&#x27;AauxNext-Regular'" font-size="20" id="svg_22" y="734" x="444" stroke-width="null" fill="#000000">扫码有惊喜</text>
+  <g id="svg_34">
+   <rect fill-opacity="0.5" fill="#000000" height="87" width="94" y="439.5" x="395" id="svg_53"/>
+   <text transform="matrix(0.522223 0 0 2.175 186.704 -745.835)" fill="#ffffff" font-family="Arial" font-size="16" y="568.98185" x="448.86434" id="svg_54">QRCODE</text>
+  </g>
+  <foreignObject id="svg_56" font-size="12" height="113" width="200" y="434.28548" x="22">快件送达收件人地址，经收件人（寄件人）允许的代收人签字，视为送达。您的签字代表您已验收，并己确认商品信息无误，没有划痕，破损等表面质量问题。</foreignObject>
+  <text xml:space="preserve" text-anchor="middle" font-family="&#x27;AauxNext-Regular'" font-size="14" id="_recevisor" y="450" x="328" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="null" fill="#000000">aaaaa</text>
+  <text xml:space="preserve" text-anchor="middle" font-family="&#x27;AauxNext-Regular'" font-size="14" id="_time" y="510.5" x="329.01563" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="null" fill="#000000">2018-04-04</text>
+  <text xml:space="preserve" text-anchor="middle" font-family="&#x27;AauxNext-Regular'" font-size="24" id="_address" y="200.44444" x="205.55555" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="null" fill="#000000">aaa</text>
+  <text xml:space="preserve" text-anchor="middle" font-family="&#x27;AauxNext-Regular'" font-size="24" id="_send" y="291.11111" x="200.22222" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="null" fill="#000000">send</text>
+ </g>
+</svg>

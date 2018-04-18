@@ -17,9 +17,30 @@ const Svg = {
       if (e.data) {
         const t = svg.select("#" + el + "_" + e.data.key);
         t.text(e.data.resource)
-        // t.attr("value", e.data.resource)
       }
     });
+  },
+  async render(el) {
+    const model = {
+      _numId: "34 D2 W3231 123",
+      _position: "华夏",
+      _recevisor: "张三",
+      _time: "2018-04-04",
+      _address: "海外",
+      _send: "李四"
+    }
+    const svg = d3.select("#" + el);
+    const html = svg._groups[0][0].innerHTML;
+    const reg = new RegExp(/post__\w+/g);
+    const temp = html.match(reg);
+    if (temp) {
+      temp.forEach(c => {
+        const ele = svg.select("#" + c);
+        const id = ele.attr("id").replace("post_", "");
+        ele.text(model[id]);
+        console.log(ele)
+      })
+    }
   }
 }
 export default Svg
