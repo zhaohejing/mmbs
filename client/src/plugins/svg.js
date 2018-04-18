@@ -41,6 +41,33 @@ const Svg = {
         console.log(ele)
       })
     }
+  },
+  async renderTable(el) {
+    const list = [{
+      name: "a",
+      gender: "女",
+      title: "a"
+    }, {
+      name: "b",
+      gender: "女",
+      title: "b"
+    }, {
+      name: "c",
+      gender: "女",
+      title: "c"
+    }]
+    const svg = d3.select("#" + el);
+    const html = svg._groups[0][0].innerHTML;
+    const reg = new RegExp(/table_box_\w+/g);
+    const temp = html.match(reg);
+    if (temp) {
+      temp.forEach(c => {
+        const ele = svg.select("#" + c);
+        const id = ele.attr("id").replace("post_", "");
+        ele.text(model[id]);
+        console.log(ele)
+      })
+    }
   }
 }
 export default Svg

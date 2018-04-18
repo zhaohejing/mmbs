@@ -1,5 +1,7 @@
 <svg width="415" height="203" xmlns="http://www.w3.org/2000/svg">
-      <table border="0" cellpadding="0" cellspacing="0" width="415">
+  <foreignObject width="120" height="50">
+      <body xmlns="http://www.w3.org/1999/xhtml">
+         <table border="0" cellpadding="0" cellspacing="0" width="415">
         <tr>
           <td width="8" style="border-left:1px solid #fff;border-top:1px solid #fff;border-bottom:0"> </td>
           <td width="18%" scope="col" style="border:1px solid #ccc;background:#fff;line-height:37px;color:#999;font-size:14px;text-align:center;font-family:微软雅黑;font-size:16px">
@@ -61,4 +63,6 @@
             <span class="down"></span>11%</td>
         </tr>
       </table>
+      </body>
+    </foreignObject>
 </svg>

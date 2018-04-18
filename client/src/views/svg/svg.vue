@@ -1,38 +1,95 @@
 <template>
   <div>
-  <!-- <svg><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#post"></use> </svg> -->
-  <svg width="500" height="650"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#post"></use> </svg>
+    <!-- <svg><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#post"></use> </svg> -->
+    <svg width="500" height="650">
+      <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#post"></use>
+    </svg>
 
-   <svg width="600" height="750"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#table"></use> </svg>
+    <svg id="table" width="415" height="203" xmlns="http://www.w3.org/2000/svg">
+      <foreignObject id="table_box_join" width="120" height="50">
+        <body xmlns="http://www.w3.org/1999/xhtml">
+          <table border="0" cellpadding="0" cellspacing="0" width="415">
+            <tr>
+              <td width="8" style="border-left:1px solid #fff;border-top:1px solid #fff;border-bottom:0"> </td>
+              <td width="18%" scope="col" style="border:1px solid #ccc;background:#fff;line-height:37px;color:#999;font-size:14px;text-align:center;font-family:微软雅黑;font-size:16px">
+              </td>
+              <td width="22%" scope="col" style="border:1px solid #ccc;background:#fff;line-height:37px;color:#999;font-size:14px;text-align:center;font-family:微软雅黑;font-size:16px">
+                <strong>数量</strong>
+              </td>
+              <td width="22%" scope="col" style="border:1px solid #ccc;background:#fff;line-height:37px;color:#999;font-size:14px;text-align:center;font-family:微软雅黑;font-size:16px">
+                <strong>占比</strong>
+              </td>
+              <td width="36%" scope="col" style="border:1px solid #ccc;background:#fff;line-height:37px;color:#999;font-size:14px;text-align:center;font-family:微软雅黑;font-size:16px">
+                <strong>环比上升（下降）</strong>
+              </td>
+            </tr>
+            <tr>
+              <th scope="row" style="background-color:#f0a3bf;line-height:37px;color:#999;font-size:14px;text-align:center;font-family:微软雅黑;font-size:16px;border-left:1px solid #fff;border-top:1px solid #fff;border-bottom:1px solid #fff">
+              </th>
+              <td scope="row" style="border:1px solid #ccc;background:#fff;line-height:37px;color:#999;font-size:14px;text-align:center;font-family:微软雅黑;font-size:16px">
+                <strong>分类 </strong>
+              </td>
+              <td style="border:1px solid #ccc;background:#fff;line-height:37px;color:#999;font-size:14px;text-align:center;font-family:微软雅黑;font-size:16px">44</td>
+              <td style="border:1px solid #ccc;background:#fff;line-height:37px;color:#999;font-size:14px;text-align:center;font-family:微软雅黑;font-size:16px">11%</td>
+              <td style="border:1px solid #ccc;background:#fff;line-height:37px;color:#999;font-size:14px;text-align:center;font-family:微软雅黑;font-size:16px">
+                <span class="up"></span>11%</td>
+            </tr>
+            <tr>
+              <th scope="row" style="background-color:#7ebfcc;line-height:37px;color:#999;font-size:14px;text-align:center;font-family:微软雅黑;font-size:16px;border-left:1px solid #fff;border-top:1px solid #fff;border-bottom:1px solid #fff">
+              </th>
+              <td scope="row" style="border:1px solid #ccc;background:#fff;line-height:37px;color:#999;font-size:14px;text-align:center;font-family:微软雅黑;font-size:16px">
+                <strong>论坛 </strong>
+              </td>
+              <td style="border:1px solid #ccc;background:#fff;line-height:37px;color:#999;font-size:14px;text-align:center;font-family:微软雅黑;font-size:16px">44</td>
+              <td style="border:1px solid #ccc;background:#fff;line-height:37px;color:#999;font-size:14px;text-align:center;font-family:微软雅黑;font-size:16px">11%</td>
+              <td style="border:1px solid #ccc;background:#fff;line-height:37px;color:#999;font-size:14px;text-align:center;font-family:微软雅黑;font-size:16px">
+                <span class="down"></span>11%</td>
+            </tr>
+            <tr>
+              <th scope="row" style="background-color:#83bc95;line-height:37px;color:#999;font-size:14px;text-align:center;font-family:微软雅黑;font-size:16px;border-left:1px solid #fff;border-top:1px solid #fff;border-bottom:1px solid #fff">
+              </th>
+              <td scope="row" style="border:1px solid #ccc;background:#fff;line-height:37px;color:#999;font-size:14px;text-align:center;font-family:微软雅黑;font-size:16px">
+                <strong>博客 </strong>
+              </td>
+              <td style="border:1px solid #ccc;background:#fff;line-height:37px;color:#999;font-size:14px;text-align:center;font-family:微软雅黑;font-size:16px">44</td>
+              <td style="border:1px solid #ccc;background:#fff;line-height:37px;color:#999;font-size:14px;text-align:center;font-family:微软雅黑;font-size:16px">11%</td>
+              <td style="border:1px solid #ccc;background:#fff;line-height:37px;color:#999;font-size:14px;text-align:center;font-family:微软雅黑;font-size:16px">
+                <span class="down"></span>11%</td>
+            </tr>
+            <tr>
+              <th scope="row" style="background-color:#e6605d;line-height:37px;color:#999;font-size:14px;text-align:center;font-family:微软雅黑;font-size:16px;border-left:1px solid #fff;border-top:1px solid #fff;border-bottom:1px solid #fff">
+              </th>
+              <td scope="row" style="border:1px solid #ccc;background:#fff;line-height:37px;color:#999;font-size:14px;text-align:center;font-family:微软雅黑;font-size:16px">
+                <strong>微博 </strong>
+              </td>
+              <td style="border:1px solid #ccc;background:#fff;line-height:37px;color:#999;font-size:14px;text-align:center;font-family:微软雅黑;font-size:16px">44</td>
+              <td style="border:1px solid #ccc;background:#fff;line-height:37px;color:#999;font-size:14px;text-align:center;font-family:微软雅黑;font-size:16px">
+                <img id="img" src="data:image/jpg;base64,/9j/4QAYRXhpZgAASUkqAAgAAAAAAAAAAAAAAP/sABFEdWNreQABAAQAAABVAAD/7gAOQWRvYmUAZMAAAAAB/9sAhAACAQEBAQECAQECAwIBAgMDAgICAgMDAwMDAwMDBAMEBAQEAwQEBQYGBgUEBwcICAcHCgoKCgoMDAwMDAwMDAwMAQICAgQDBAcEBAcKCAcICgwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAz/wAARCAASACgDAREAAhEBAxEB/8QAaAABAQADAAAAAAAAAAAAAAAABwAFCAkBAQAAAAAAAAAAAAAAAAAAAAAQAAEDAgYBAQYHAAAAAAAAAAECAwQFBgARIRIHCAlRMUEyE3MUIkJSsjW1OBEBAAAAAAAAAAAAAAAAAAAAAP/aAAwDAQACEQMRAD8A6b+RDt5MpUo8EcXTlsVJlaHriqcNwocbWghxuI24gggggKcIPon9QwC50r7RxOxPHwhV1xCOUaMhDNXYGSfuEfCiW2kZDJeX4gPhV6ApwDTgB/u1yvb3G/BdbpFxR5ahcdPqFFgyorHzY6Jb8RaW0PL3DZuzJBy1yPpgNNOgnKtu8S87Gq3ExKkipwHaJBjUxj7h92XJlxVNoCNyfb8s654BN8rdvUCi1ey5VGgx4kmWmsOy3IzLbSnl74R3OFCQVHNR1PrgGbx2W9QGesNu3E1BjpuB1VTadnJZbEhaBVJA2qdCd5GSRoT7hgHjAYXkPj+1+UrLqFhXlHEm3qk0WH0aBST7UuIJB2rQoBST7iMAE9QOizXA151W/b5eaqVwsPPQrbW2M0tQzoZSgc9rziTty/KM9Tu0A98t38hYf06x+6DgGbx4f5Jtn6lT/tZOAbMBYCwH/9k="
+                />11%</td>
+              <td style="border:1px solid #ccc;background:#fff;line-height:37px;color:#999;font-size:14px;text-align:center;font-family:微软雅黑;font-size:16px">
+                <span class="down"></span>11%</td>
+            </tr>
+          </table>
+        </body>
+      </foreignObject>
+    </svg>
   </div>
 </template>
 <script>
 import post from "../../svg/post.svg";
-import table from "../../svg/table.svg";
 // import Mmbs from "mmbs";
 import Svg from "plugins/svg";
 export default {
   name: "svg",
   created() {
     Svg.render(post.id);
-    Svg.render(table.id);
-    console.log(table);
+    Svg.renderTable("table");
     // Mmbs.Cloud.run("getConfig").then(r => {
     //   _self.json = r;
     //   Svg.action(post.id, _self.json);
     // });
   },
-  data() {
-    return {
-      svgs: null,
-      json: []
-    };
-  },
-  methods: {
-    genderSvg() {
-      return 1;
-    }
-  }
+  methods: {}
 };
 </script>
 <style lang="less" scoped>
