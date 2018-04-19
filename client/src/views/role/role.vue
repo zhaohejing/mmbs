@@ -71,9 +71,7 @@ export default {
       defaultExpanded: []
     };
   },
-  created() {
-    console.log(1);
-  },
+  created() {},
   methods: {
     api: _roleRepository.find.bind(_roleRepository),
     onDelete(x) {
@@ -128,7 +126,6 @@ export default {
       this.form.menus = tree;
       if (this.form.id) {
         _roleRepository.updateRole(this.form).then(r => {
-          console.log(r);
           if (r) {
             table.initData();
             this.show = false;
@@ -136,7 +133,6 @@ export default {
         });
       } else {
         _roleRepository.saveRole(this.form).then(r => {
-          console.log(r);
           if (r) {
             table.initData();
             this.show = false;

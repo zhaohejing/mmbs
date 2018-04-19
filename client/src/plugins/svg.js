@@ -38,7 +38,6 @@ const Svg = {
         const ele = svg.select("#" + c);
         const id = ele.attr("id").replace("post_", "");
         ele.text(model[id]);
-        console.log(ele)
       })
     }
   },
@@ -62,10 +61,18 @@ const Svg = {
     const temp = html.match(reg);
     if (temp) {
       temp.forEach(c => {
+        // fo
         const ele = svg.select("#" + c);
-        const id = ele.attr("id").replace("post_", "");
-        ele.text(model[id]);
-        console.log(ele)
+        const table = ele.select("bpdy table");
+        //  const thead = table.select("thead th")
+        //  const props = thead.selectAll("td");
+        const tbody = table.select("tbody");
+        const trs = tbody.selectAll("tr").data(list);
+        trs.enter().append("tr");
+        const tds = trs.selectAll("td").data((d, i) => {
+          console.log(d + "_" + i)
+        })
+        tds.enter().append("td");
       })
     }
   }

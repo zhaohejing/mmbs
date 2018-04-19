@@ -72,7 +72,6 @@ export default {
   methods: {
     api: _menuRepository.find.bind(_menuRepository),
     onDelete(x) {
-      console.log(x);
       _menuRepository.delete(x).then(r => {
         if (r) {
           this.init();
@@ -147,7 +146,6 @@ export default {
     },
     save() {
       debugger;
-      console.log(this.form);
       this.form.sort = this.form.sort || 1;
       this.form.sort = parseInt(this.form.sort);
       _menuRepository.insert(this.form, "administrator").then(r => {

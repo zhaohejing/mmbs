@@ -117,7 +117,6 @@ export default {
     },
     save() {
       debugger;
-      console.log(this.form);
       _cateRepository.insert(this.form).then(r => {
         if (r) {
           this.form = {};
